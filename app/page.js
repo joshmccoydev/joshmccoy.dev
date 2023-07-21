@@ -5,10 +5,10 @@ export default function Home() {
   return (
     <main className="text-center my-80">
       <section id="">
-        <h2 className="text-8xl py-2">
+        <h2 className="text-6xl py-2">
           Joshua McCoy
         </h2>
-        <h3 className="text-5xl py-2">
+        <h3 className="text-4xl py-2">
           Full-stack Web Developer
         </h3>
         <p className="text-lg py-2">
