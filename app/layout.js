@@ -1,7 +1,5 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import {AiFillGithub, AiFillTwitterCircle} from 'react-icons/ai'
 
 export const metadata = {
   title: 'Create Next App',
@@ -10,8 +8,26 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="min-h-full">
+      <body className="container">
+        <nav className="rounded-full bg-white my-2 p-4 flex justify-between">
+          <h1>josh mccoy</h1>
+          <ul className="flex items-center space-x-10">
+            <li>Link #1</li>
+            <li>Link #1</li>
+            <li>Link #1</li>
+          </ul>
+        </nav>
+        {children}
+        <div className="min-w-full fixed bottom-0">
+          <footer className="w-96 mx-auto">
+            <ul className="flex justify-center text-2xl">
+              <li><AiFillGithub /></li>
+              <li><AiFillTwitterCircle /></li>
+            </ul>
+          </footer>
+        </div>
+      </body>
     </html>
   )
 }
