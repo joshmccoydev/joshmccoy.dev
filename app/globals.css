@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.cross-fade {
+    position: relative;
+  }
+  
+  .cross-fade img {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+    margin: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+  } 
+  
+  .cross-fade img:first-child {
+    opacity: 1;
+  }
+  
+  .cross-fade:hover img {
+    opacity: 1;
+  }
+  
+  .cross-fade:hover img:first-child {
+    opacity: 0;
+  }
