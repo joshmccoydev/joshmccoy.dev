@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import profile from '/public/profile.png'
-import logo from '/public/logo.png'
-import logo2 from '/public/logo2.png'
+import big_logo_light from '/public/big_logo_light.png'
+import big_logo_dark from '/public/big_logo_dark.png'
+
 
 export default function Home() {
   return (
@@ -14,8 +15,8 @@ export default function Home() {
             Josh McCoy
             </h2>
         </div>
-        <h3 className="text-4xl dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500">
-          A prefessional chef by day &< br /> a self-taught, full-stack web developer by night!
+        <h3 className="text-4xl">
+          a professional chef turned full-stack dev.
         </h3>
         <p className="text-lg my-2">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum deserunt rem nostrum praesentium ullam molestiae eos tenetur cupiditate amet veniam dignissimos eveniet, recusandae sunt minima quisquam fugit quis. Perferendis, eveniet.
@@ -30,11 +31,17 @@ export default function Home() {
           width="500"
           height="500" />
 
-          <Image src={logo} className="mx-auto rounded-full"
+          <Image src={big_logo_light} className="mx-auto rounded-full block dark:hidden"
+          alt="My Logo"
+          width="500"
+          height="500" />
+
+          <Image src={big_logo_dark} className="mx-auto rounded-full hidden dark:block"
           alt="My Logo"
           width="500"
           height="500" />
         </div>
+        
       </section>
 
       <section id="skills" className="mt-40">
