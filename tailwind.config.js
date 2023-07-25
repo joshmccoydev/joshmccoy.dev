@@ -15,6 +15,10 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    plugins: [
+      require('@tailwindcss/forms'),
+      // ...
+    ],
     extend: {
       keyframes: {
         "accordion-down": {
