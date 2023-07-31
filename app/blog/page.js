@@ -7,7 +7,7 @@ import {Button} from "@/components/ui/button"
 
 export default function Home() {
   return (
-    <main className="container text-center my-48">
+    <main className="container text-center my-auto">
       <h1 className="text-2xl">Blog</h1>
   </main>
 
