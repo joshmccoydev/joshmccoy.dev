@@ -30,16 +30,16 @@ export default function Home() {
         <div className="cross-fade md:flex items-center w-full">
           <Image src={profile} className="mx-auto rounded-full"
           alt="My Memoji"
-          width="400"
-          height="400" />
+          width="300"
+          height="300" />
           <Image src={big_logo_light} className="mx-auto rounded-full block dark:hidden"
           alt="My Logo"
-          width="400"
-          height="400" />
+          width="300"
+          height="300" />
           <Image src={big_logo_dark} className="mx-auto rounded-full hidden dark:block"
           alt="My Logo"
-          width="400"
-          height="400" />
+          width="300"
+          height="300" />
         </div>
       </section>
   </main>
