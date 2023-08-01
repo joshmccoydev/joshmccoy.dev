@@ -10,7 +10,7 @@ export default function Home() {
     <main className="mx-auto w-5/6 md:w-2/3 lg:w-1/2">
         <section className="mt-16 md:mt-32 lg:mt-96">
             <h2 className="text-2xl">Why I gave up on trying to create the perfect portfolio site</h2>
-            <p className="pt-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo obcaecati nihil et esse? Animi dicta ad est sint nisi eius, pariatur accusantium exercitationem laboriosam sapiente blanditiis consequuntur minus consectetur quibusdam.</p>
+            <p className="pt-4">...</p>
         </section>
     </main>
 

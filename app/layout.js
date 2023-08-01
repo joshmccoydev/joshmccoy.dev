@@ -42,8 +42,11 @@ export default function RootLayout({ children }) {
         <div className="w-full fixed bottom-5">
           <footer className="w-5/6 md:w-2/3 lg:w-1/2 mx-auto">
             <ul className="dark:bg-none dark:bg-slate-800 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 justify-center rounded-full shadow-md shadow-slate-600 flex gap-2 py-4 text-2xl">
+              
+              {/* Fix these links */}
+
               <li><AiFillGithub /></li>
-              <li><AiFillTwitterCircle /></li>
+              <li><a href="http://twitter.com/joshmccoydev"><AiFillTwitterCircle /></a></li>
             </ul>
           </footer>
         </div>
