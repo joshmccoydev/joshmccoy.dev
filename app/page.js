@@ -13,14 +13,14 @@ export default function Home() {
     <main className="mx-auto mt- text-center w-5/6 md:w-2/3 lg:1/2">
       <section id="" className="pt-10 w-100 crosshair md:grid md:grid-cols-3">
       <div className="md:col-span-2">
-        <h3 className="text-3xl md:text-4xl lg:text-6xl z-10 -rotate-[6.75deg]">👋Hello, World!</h3>
+        <h3 className="text-2xl md:text-4xl lg:text-6xl z-10 -rotate-[6.75deg]">👋Hello, World!</h3>
         <div className="flex justify-center pt-2">
-          <h2 className="text-3xl md:text-4xl lg:text-6xl my-auto">I'm&nbsp;</h2>
-          <h2 className="text-3xl md:text-4xl lg:text-6xl my-auto bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-transparent bg-clip-text dark:bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500">
+          <h2 className="text-2xl md:text-4xl lg:text-6xl my-auto">I'm&nbsp;</h2>
+          <h2 className="text-2xl md:text-4xl lg:text-6xl my-auto bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-transparent bg-clip-text dark:bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500">
           Josh McCoy
           </h2>
         </div>
-        <h3 className="text-2xl md:text-3xl lg:text-5xl">
+        <h3 className="text-xl md:text-3xl lg:text-5xl">
           full-stack/web3 developer.
         </h3>
         <p className="text-md md:text-lg lg:text-2xl my-2">

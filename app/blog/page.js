@@ -8,12 +8,12 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <main className="mx-auto text-justify w-5/6 md:w-2/3 lg:w-1/2">
-      <section className="crosshair">
+      <section className="mt-[calc(45%)]">
         <h1 className="text-2xl md:text-3xl lg:text-4xl">Most recent posts</h1>
         <ul className="text-lg md:text-xl lg:text-2xl mt-2 md:mt-6 lg:mt-10 pb-2 md:pb-4 lg:pb-10 space-y-4 md:space-y-4 lg:space-y-12">
           <li>
             <Link href="/blog/001" className="">
-              <h2>Why I gave up on trying to create the perfect portfolio site</h2>
+              <h2 className="text-lg">Why I gave up on trying to create the perfect portfolio site</h2>
               <h3 className="text-sm text-slate-500">Published on July 31, 2023</h3>
             </Link>
           </li>

@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         <div className="z-50">
           <nav className="mx-auto w-5/6 md:w-2/3 lg:w-1/2 p-4 mt-5 dark:bg-none dark:bg-slate-800 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 justify-between rounded-full flex shadow-md shadow-slate-600">
             <Link href="/">
-              <span className="flex gap-2">
+              <span className="flex">
                 <Image src={logoblack} className="mx-auto rounded-full block dark:hidden"
                   alt="My Logo"
                   width="50"
