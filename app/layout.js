@@ -13,10 +13,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="min-h-screen max-h-screen">
-      <body className="bg-gradient-to-b from-slate-200 to-slate-100 dark:bg-gradient-to-b dark:from-black dark:to-slate-900 dark:text-slate-300">
-        <div className="w-full mx-auto z-50 w-5/6 sm:w-5/6 md:w-2/3 lg:w-1/2">
-          <nav className="mx-auto p-4 mt-10 dark:bg-none dark:bg-slate-800 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 justify-between rounded-full flex shadow-md shadow-slate-600">
+    <html lang="en" className="h-screen">
+      <body className="overflow-hidden bg-gradient-to-b from-slate-200 to-slate-100 dark:bg-gradient-to-b dark:from-black dark:to-slate-900 dark:text-slate-300">
+        <div className="z-50">
+          <nav className="mx-auto w-5/6 md:w-2/3 lg:w-1/2 p-4 mt-5 dark:bg-none dark:bg-slate-800 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 justify-between rounded-full flex shadow-md shadow-slate-600">
             <Link href="/">
               <span className="flex gap-2">
                 <Image src={logoblack} className="mx-auto rounded-full block dark:hidden"
@@ -39,9 +39,9 @@ export default function RootLayout({ children }) {
           </nav>
         </div>
         {children}
-        <div className="w-full fixed bottom-10">
-          <footer className="w-full mx-auto w-5/6 md:w-2/3 lg:w-1/2">
-            <ul className="mx-auto dark:bg-none dark:bg-slate-800 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 justify-center rounded-full shadow-md shadow-slate-600 flex gap-2 py-4 text-2xl">
+        <div className="w-full fixed bottom-5">
+          <footer className="w-5/6 md:w-2/3 lg:w-1/2 mx-auto">
+            <ul className="dark:bg-none dark:bg-slate-800 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 justify-center rounded-full shadow-md shadow-slate-600 flex gap-2 py-4 text-2xl">
               <li><AiFillGithub /></li>
               <li><AiFillTwitterCircle /></li>
             </ul>
