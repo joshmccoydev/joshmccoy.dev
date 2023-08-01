@@ -7,41 +7,47 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <main className="container md:w-2/3 lg:w-1/2">
-      <section className="mt-10">
-        <h1 className="text-4xl">Most recent posts</h1>
-        <ul className="text-2xl mt-4 pb-10 space-y-4">
+    <main className="container text-justify md:w-2/3 lg:w-1/2">
+      <section className="mt-16 md:mt-32 lg:mt-96">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl">Most recent posts</h1>
+        <ul className="text-lg md:text-1xl lg:text-2xl mt-2 md:mt-6 lg:mt-10 pb-2 md:pb-4 lg:pb-10 space-y-4 md:space-y-4 lg:space-y-12">
           <li>
             <Link href="/blog/001" className="">
               <h2>Why I gave up on trying to create the perfect portfolio site</h2>
-              <h3 className="text-sm">Published on July 31, 2023</h3>
+              <h3 className="text-sm text-slate-500">Published on July 31, 2023</h3>
             </Link>
           </li>
-          {/*<li>
-            <Link href="/blog/001" className="">
-              <h2>The second post</h2>
-              <h3 className="text-sm">Published in the future</h3>
-            </Link>
-          </li>
+          {/* 
           <li>
             <Link href="/blog/001" className="">
               <h2>Why I gave up on trying to create the perfect portfolio site</h2>
-              <h3 className="text-sm">Published on July 31, 2023</h3>
+              <h3 className="text-sm text-slate-500">Published on July 31, 2023</h3>
             </Link>
           </li>
           <li>
             <Link href="/blog/001" className="">
               <h2>Why I gave up on trying to create the perfect portfolio site</h2>
-              <h3 className="text-sm">Published on July 31, 2023</h3>
+              <h3 className="text-sm text-slate-500">Published on July 31, 2023</h3>
             </Link>
           </li>
           <li>
             <Link href="/blog/001" className="">
               <h2>Why I gave up on trying to create the perfect portfolio site</h2>
-              <h3 className="text-sm">Published on July 31, 2023</h3>
+              <h3 className="text-sm text-slate-500">Published on July 31, 2023</h3>
             </Link>
-          </li>*/}
+          </li>
+          <li>
+            <Link href="/blog/001" className="">
+              <h2>Why I gave up on trying to create the perfect portfolio site</h2>
+              <h3 className="text-sm text-slate-500">Published on July 31, 2023</h3>
+            </Link>
+          </li>
+          */}
+          
         </ul>
+        <Link href="/blog/archive" className="">
+          <h2 className="text-lg md:text-xl lg:text-2xl">Archive</h2>
+        </Link>
       </section>
   </main>
 
