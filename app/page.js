@@ -8,9 +8,9 @@ import { Icon } from '@iconify/react'
 
 export default function Home() {
   return (
-    <main className="mx-auto text-center w-5/6 md:w-2/3 lg:w-1/2">
-      <section id="" className="pt-10 w-100 landscape:pt-20 crosshair md:grid md:grid-cols-3">
-        <div className="md:col-span-2">
+    <main className="text-center container w-100">
+      <section id="" className="md:container crosshair md:grid md:grid-cols-12">
+        <div className="md:col-span-6 md:col-start-2 lg:col-span-4 lg:col-start-3">
           <h3 className="text-2xl md:text-3xl landscape:text-3xl lg:text-6xl z-10 -rotate-[6.75deg]">👋Hello, World!</h3>
           <div className="flex justify-center pt-2">
             <h2 className="text-2xl md:text-3xl landscape:text-2xl lg:text-6xl my-auto">I'm&nbsp;</h2>
@@ -27,19 +27,19 @@ export default function Home() {
             This will be finished tomorrow.</p>
         </div>
         
-        <div className="cross-fade md:flex items-center w-full">
+        <div className="cross-fade md:flex md:col-span-4 lg:col-span-4 items-center w-full">
           <Image src={profile} className="mx-auto rounded-full"
           alt="My Memoji"
-          width="300"
-          height="300" />
+          width="400"
+          height="400" />
           <Image src={big_logo_light} className="mx-auto rounded-full block dark:hidden"
           alt="My Logo"
-          width="300"
-          height="300" />
+          width="400"
+          height="400" />
           <Image src={big_logo_dark} className="mx-auto rounded-full hidden dark:block"
           alt="My Logo"
-          width="300"
-          height="300" />
+          width="400"
+          height="400" />
         </div>
       </section>
   </main>

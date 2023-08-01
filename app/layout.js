@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
               
               {/* Fix these links */}
 
-              <li><AiFillGithub /></li>
+              <li><a href="http://github.com/joshmccoydev"><AiFillGithub /></a></li>
               <li><a href="http://twitter.com/joshmccoydev"><AiFillTwitterCircle /></a></li>
             </ul>
           </footer>
