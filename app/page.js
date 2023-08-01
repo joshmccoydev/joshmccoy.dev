@@ -10,7 +10,7 @@ import { Icon } from '@iconify/react'
 
 export default function Home() {
   return (
-    <main className="mx-auto text-center w-5/6 md:w-2/3 lg:w-1/2 sm:pt-16 md:pt-16 lg:pt-96">
+    <main className="mx-auto text-center w-5/6 md:w-2/3 lg:w-1/2 sm:pt-16 md:pt-8 lg:pt-96">
       <section id="about" className="pt-10">
         <h3 className="text-3xl md:text-4xl lg:text-6xl z-10 -rotate-[6.75deg]">👋Hello, World!</h3>
         <div className="flex justify-center pt-2">
