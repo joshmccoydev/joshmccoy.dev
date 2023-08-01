@@ -27,12 +27,12 @@ export default function RootLayout({ children }) {
                   alt="My Logo"
                   width="50"
                   height="50" />
-                <h1 className="text-2xl my-auto text-slate-300">JM</h1>
+                <h1 className="text-2xl my-auto">JM</h1>
               </span>
             </Link>
           
             <Link href="/blog" className="my-auto">
-              <Button className="bg-transparent px-8 shadow-lg rounded-3xl text-slate bg-slate-200 text-black dark:bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 dark:text-slate-300">
+              <Button className="bg-transparent px-8 shadow-lg shadow-slate-600 rounded-3xl text-slate bg-slate-200 text-black dark:bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 dark:text-slate-300">
                 Blog
               </Button>
             </Link>
