@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
             </Link>
           
             <Link href="/blog" className="my-auto">
-              <Button className="bg-transparent px-8 shadow-lg shadow-slate-600 rounded-3xl text-slate bg-slate-200 text-black dark:bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 dark:text-slate-300">
+              <Button className="bg-transparent px-8 shadow-md shadow-slate-600 rounded-3xl text-slate bg-slate-200 text-black dark:bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 dark:text-slate-300">
                 Blog
               </Button>
             </Link>

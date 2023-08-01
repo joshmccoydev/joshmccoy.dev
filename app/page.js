@@ -9,8 +9,8 @@ import { Icon } from '@iconify/react'
 export default function Home() {
   return (
     <main className="text-center container w-100">
-      <section id="" className="md:container crosshair md:grid md:grid-cols-12">
-        <div className="md:col-span-6 md:col-start-2 lg:col-span-4 lg:col-start-3">
+      <section id="" className="md:container crosshair mt-10 md:mt-0 md:grid md:grid-cols-12">
+        <div className="md:col-span-5 md:col-start-3 lg:col-span-3 lg:col-start-4">
           <h3 className="text-2xl md:text-3xl landscape:text-3xl lg:text-6xl z-10 -rotate-[6.75deg]">👋Hello, World!</h3>
           <div className="flex justify-center pt-2">
             <h2 className="text-2xl md:text-3xl landscape:text-2xl lg:text-6xl my-auto">I'm&nbsp;</h2>
