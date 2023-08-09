@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className="h-screen">
       <body className="overflow-hidden bg-gradient-to-b from-slate-200 to-slate-100 dark:bg-gradient-to-b dark:from-black dark:to-slate-900 dark:text-slate-300">
         <div className="z-50">
-          <nav className="mx-auto opacity-75 w-5/6 md:w-2/3 lg:w-1/2 p-4 mt-5 dark:bg-none dark:bg-slate-800 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 justify-between rounded-full flex shadow-md shadow-slate-600">
+          <nav className="mx-auto w-5/6 md:w-2/3 lg:w-1/2 p-4 mt-5 dark:bg-none dark:bg-slate-800 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 justify-between rounded-full flex shadow-md shadow-slate-600">
             <Link href="/">
               <span className="flex">
                 <Image src={logoblack} className="mx-auto rounded-full block dark:hidden"
@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
             </Link>
           
             <Link href="https://blog.joshmccoy.dev" className="my-auto">
-              <Button className="bg-transparent opacity-100 z-100 px-8 shadow-md shadow-slate-600 rounded-3xl text-slate bg-slate-200 text-black dark:bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 dark:text-slate-300">
+              <Button className="bg-transparent px-8 shadow-md shadow-slate-600 rounded-3xl text-slate bg-slate-200 text-black dark:bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 dark:text-slate-300">
                 Blog
               </Button>
             </Link>
@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
         </div>
         {children}
         <div className="w-full fixed bottom-5">
-          <footer className="w-5/6 md:w-2/3 lg:w-1/2 mx-auto opacity-75">
+          <footer className="w-5/6 md:w-2/3 lg:w-1/2 mx-auto">
             <ul className="dark:bg-none dark:bg-slate-800 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 justify-center rounded-full shadow-md shadow-slate-600 flex gap-2 py-4 text-2xl">
               
               {/* Fix these links */}
