@@ -21,7 +21,7 @@ export default function Home() {
           <h3 className="text-2xl md:text-3xl landscape:text-2xl lg:text-5xl">
             full-stack/web3 developer.
           </h3>
-          <p className="text-md md:text-md landscape:text-lg lg:text-xl my-2">
+          <p className="text-md md:text-lg landscape:text-lg lg:text-xl my-2">
             For the past 15+ years I've worked my way through the ranks of commercial kitchens while self-teaching web development concepts. Now I'm building a platform for cooks to get bigger raises.</p>
         </div>
         
