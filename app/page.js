@@ -22,9 +22,7 @@ export default function Home() {
             full-stack/web3 developer.
           </h3>
           <p className="text-md md:text-md landscape:text-lg lg:text-xl my-2">
-            For the past 15+ years I've worked my way through the ranks of commercial kitchens while self-teaching web development concepts. Now I create things that are perpetually under construction.</p>
-            <p className="text-md md:text-md landscape:text-lg lg:text-xl my-2">
-            This will be finished tomorrow.</p>
+            For the past 15+ years I've worked my way through the ranks of commercial kitchens while self-teaching web development concepts. Now I'm building a platform for cooks to get bigger raises.</p>
         </div>
         
         <div className="cross-fade md:flex md:col-span-4 lg:col-span-4 items-center w-full">
