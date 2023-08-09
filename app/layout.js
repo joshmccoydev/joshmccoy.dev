@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
               </span>
             </Link>
           
-            <Link href="/blog" className="my-auto">
+            <Link href="https://blog.joshmccoy.dev" className="my-auto">
               <Button className="bg-transparent opacity-75 px-8 shadow-md shadow-slate-600 rounded-3xl text-slate bg-slate-200 text-black dark:bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 dark:text-slate-300">
                 Blog
               </Button>
