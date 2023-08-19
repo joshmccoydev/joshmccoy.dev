@@ -5,6 +5,8 @@ import {AiFillGithub, AiFillTwitterCircle} from 'react-icons/ai'
 import {Button} from "@/components/ui/button"
 import logoblack from '/public/logoblack.png'
 import logowhite from '/public/logowhite.png'
+import { Analytics } from '@vercel/analytics/react';
+
 
 export const metadata = {
   title: 'Josh McCoy - Full-stack Web Developer',
@@ -49,6 +51,7 @@ export default function RootLayout({ children }) {
             </ul>
           </footer>
         </div>
+        <Analytics mode={'production'} />;
       </body>
     </html>
   )
