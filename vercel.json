@@ -2,7 +2,7 @@
     "alias": ["x.joshmccoy.dev", "twitter.joshmccoy.dev"],
     "redirects": [
       {
-        "source": "/(.*)",
+        "source": "x.*, twitter.*",
         "permanent": true,
         "destination": "https://x.com/joshmccoydev"
       }
