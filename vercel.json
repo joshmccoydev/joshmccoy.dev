@@ -1,0 +1,10 @@
+{
+    "alias": ["x.joshmccoy.dev", "twitter.joshmccoy.dev"],
+    "redirects": [
+      {
+        "source": "/(.*)",
+        "permanent": true,
+        "destination": "https://x.com/joshmccoydev"
+      }
+    ]
+  }
