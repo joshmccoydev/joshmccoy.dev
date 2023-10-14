@@ -1,4 +1,5 @@
 'use client'
+// probably should rename this to index.js just because, but it's late & i don't want to break something right before i go to bed
 import Image from 'next/image'
 import profile from '/public/profile.png'
 import big_logo_light from '/public/big_logo_light.png'
