@@ -1,10 +1,10 @@
-import './globals.css'
-import Image from 'next/image'
-import Link from 'next/link'
-import {AiFillGithub, AiFillTwitterCircle} from 'react-icons/ai'
-import {Button} from "@/components/ui/button"
-import logoblack from '/public/logoblack.png'
-import logowhite from '/public/logowhite.png'
+import './globals.css';
+import Image from 'next/image';
+import Link from 'next/link';
+import {AiFillGithub, AiFillTwitterCircle} from 'react-icons/ai';
+import {Button} from '@/components/ui/button';
+import logoblack from '/public/logoblack.png';
+import logowhite from '/public/logowhite.png';
 import { Analytics } from '@vercel/analytics/react';
 
 
@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
             </ul>
           </footer>
         </div>
-        <Analytics />;
+        <Analytics />
       </body>
     </html>
   )
