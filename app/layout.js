@@ -1,7 +1,7 @@
 import './globals.css'
 import Image from 'next/image'
 import Link from 'next/link'
-import {AiFillGithub, AiFillTwitterCircle} from 'react-icons/ai'
+import {AiFillGithub, AiFillTwitterCircle, AiOutlineYoutube} from 'react-icons/ai'
 import {BsDiscord} from 'react-icons/bs'
 import {Button} from "@/components/ui/button"
 import logoblack from '/public/logoblack.png'
@@ -47,7 +47,8 @@ export default function RootLayout({ children }) {
             <ul className="dark:bg-none dark:bg-slate-800 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 justify-center rounded-full shadow-md shadow-slate-600 flex gap-2 py-4 text-2xl">
               
               {/* Fix these links */}
-              <a href="https://discord.gg/sgjVmKGbvg"><li><BsDiscord/></li></a>
+              <a href="https://discord.gg/sgjVmKGbvg"><li><BsDiscord /></li></a>
+              <a href="https://www.youtube.com/channel/UCX7mTRL9WJUjOLE6PC2UmxQ"><li><AiOutlineYoutube /></li></a>
               <a href="http://x.com/joshmccoydev"><li><AiFillTwitterCircle /></li></a>
               <a href="http://github.com/joshmccoydev"><li><AiFillGithub /></li></a>
             </ul>
