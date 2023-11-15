@@ -23,7 +23,7 @@ export default function Home() {
             full-stack/web3 developer.
           </h3>
           <p className="text-md md:text-lg landscape:text-lg lg:text-xl my-2">
-            For the past 15+ years I've worked my way through the ranks of commercial kitchens while self-teaching web development concepts. Now I'm building an <a className="underline" href="https://innkeeper.vercel.app">AI companion for Dungeons & Dragons Fifth Edition</a>.</p>
+            For the past 15+ years I've worked my way through the ranks of commercial kitchens while self-teaching web development concepts. Now I'm building <a className="underline" href="http://sourcery.digital">Sourcery Digital</a>: a web development agency dedicated to providing high quality websites for small businesses at a fair price.</p>
         </div>
         
         <div className="cross-fade md:flex md:col-span-4 lg:col-span-4 items-center w-full">
