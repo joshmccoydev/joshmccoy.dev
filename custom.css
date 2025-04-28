@@ -2,12 +2,12 @@ body {
     max-width: 360px;
     padding:10px;
     text-transform: lowercase;
+    font-weight: 300;
 }
 
 .inter{
     font-family: "Inter", serif;
     font-optical-sizing: auto;
-    font-weight: 300;
     font-style: normal;
     font-size: large;
 }
@@ -22,13 +22,14 @@ a {
 a:hover {
     background-color: #2d2d2d;
     color: white;
-    padding: 0 2px;
+
 }
 
 ul {
     list-style-type: none;
     padding-left: 0;
     margin-top: 0;
+    
 }
 
 ul li {
@@ -53,11 +54,20 @@ ul li {
 
 h1 {
     margin-bottom: 8px;
+    font-weight: 600;
 }
 
 h2 {
     margin-bottom: 5px;
+    font-weight:400;
 }
+
+h3 {
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+
+
 
 #coding-stats {
     margin-bottom: 0;
@@ -95,4 +105,12 @@ h2 {
     color: #2d2d2d;
 }
 
-/* Removed .contact-buttons and .contact-btn styles as contact links are now plain */
+/* Indent all section content except headings */
+section > *:not(h1):not(h2):not(h3) {
+    margin-left: 10px;
+}
+
+.stats-links a {
+    text-decoration: none;
+    border-bottom: 1px solid #2d2d2d;
+}
