@@ -1,0 +1,98 @@
+body {
+    max-width: 360px;
+    padding:10px;
+    text-transform: lowercase;
+}
+
+.inter{
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-size: large;
+}
+
+a {
+    color: #2d2d2d;
+    text-decoration: none;
+    border-bottom: 1px solid #2d2d2d;
+    transition: all 0.2s ease-in-out;
+}
+
+a:hover {
+    background-color: #2d2d2d;
+    color: white;
+    padding: 0 2px;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 0;
+}
+
+ul li {
+    margin-top:5px;
+  
+}
+
+#projects ul p {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+#projects ul li p {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+#projects ul li{
+   padding-top:2px;
+   padding-bottom:2px;
+}
+
+h1 {
+    margin-bottom: 8px;
+}
+
+h2 {
+    margin-bottom: 5px;
+}
+
+#coding-stats {
+    margin-bottom: 0;
+}
+#coding-stats h3 {
+    margin-bottom: 2px;
+}
+
+.redacted {
+    color: #2d2d2d;
+    cursor: not-allowed;
+    user-select: none;
+    border-bottom: 1px dashed #2d2d2d;
+}
+
+.server-status {
+    color: #ff9800;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.server-details {
+    font-size: 0.9em;
+    margin-top: 2px;
+    color: #666;
+    padding-left: 10px;
+}
+
+.server-details.inactive {
+    opacity: 0.6;
+}
+
+.server-details strong {
+    color: #2d2d2d;
+}
+
+/* Removed .contact-buttons and .contact-btn styles as contact links are now plain */
