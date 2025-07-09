@@ -3,6 +3,41 @@ body {
     padding:10px;
     text-transform: lowercase;
     font-weight: 300;
+    margin: 0 auto;
+}
+
+/* Multi-column layout for larger screens */
+@media (min-width: 1200px) {
+    body {
+        max-width: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 420px);
+        gap: 40px;
+        padding: 20px;
+        align-items: start;
+        justify-content: center;
+    }
+    
+    section {
+        break-inside: avoid;
+    }
+}
+
+/* Two-column layout for medium screens */
+@media (min-width: 900px) and (max-width: 1199px) {
+    body {
+        max-width: none;
+        display: grid;
+        grid-template-columns: repeat(2, 420px);
+        gap: 40px;
+        padding: 20px;
+        align-items: start;
+        justify-content: center;
+    }
+    
+    section {
+        break-inside: avoid;
+    }
 }
 
 .inter{
@@ -45,6 +80,11 @@ ul li {
 #projects ul li p {
     margin-top: 1px;
     margin-bottom: 1px;
+}
+
+.project-details {
+    color: #666;
+    font-size: 0.9em;
 }
 
 #projects ul li{
@@ -105,12 +145,42 @@ h3 {
     color: #2d2d2d;
 }
 
-/* Indent all section content except headings */
-section > *:not(h1):not(h2):not(h3) {
-    margin-left: 10px;
-}
 
 .stats-links a {
     text-decoration: none;
     border-bottom: 1px solid #2d2d2d;
+}
+
+.tech-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tech-category {
+    margin-bottom: 8px;
+}
+
+.tech-category h3 {
+    margin-bottom: 2px;
+    color: #666;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.tech-category p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* Subtle section transitions */
+section {
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Improve readability on larger screens */
+@media (min-width: 900px) {
+    body {
+        line-height: 1.6;
+    }
 }
