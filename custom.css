@@ -178,6 +178,11 @@ section {
     transition: opacity 0.2s ease-in-out;
 }
 
+/* Hide content when in maintenance mode */
+.hidden {
+    display: none;
+}
+
 /* Improve readability on larger screens */
 @media (min-width: 900px) {
     body {
