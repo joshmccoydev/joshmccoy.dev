@@ -4,11 +4,16 @@ body {
     text-transform: lowercase;
     font-weight: 300;
     margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Multi-column layout for larger screens */
 @media (min-width: 1200px) {
-    body {
+    body:not(:has(#under-construction:not(.hidden))) {
         max-width: none;
         display: grid;
         grid-template-columns: repeat(auto-fit, 420px);
@@ -18,6 +23,16 @@ body {
         justify-content: center;
     }
     
+    body:has(#under-construction:not(.hidden)) {
+        max-width: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        padding: 20px;
+    }
+    
     section {
         break-inside: avoid;
     }
@@ -25,7 +40,7 @@ body {
 
 /* Two-column layout for medium screens */
 @media (min-width: 900px) and (max-width: 1199px) {
-    body {
+    body:not(:has(#under-construction:not(.hidden))) {
         max-width: none;
         display: grid;
         grid-template-columns: repeat(2, 420px);
@@ -33,6 +48,16 @@ body {
         padding: 20px;
         align-items: start;
         justify-content: center;
+    }
+    
+    body:has(#under-construction:not(.hidden)) {
+        max-width: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        padding: 20px;
     }
     
     section {
@@ -181,6 +206,11 @@ section {
 /* Hide content when in maintenance mode */
 .hidden {
     display: none;
+}
+
+/* Center under construction section */
+#under-construction {
+    text-align: center;
 }
 
 /* Improve readability on larger screens */
