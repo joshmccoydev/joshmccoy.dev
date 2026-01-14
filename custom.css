@@ -75,6 +75,18 @@ body:not(:has(#under-construction:not(.hidden))) {
     }
 }
 
+/* Override grid for single-column pages */
+body.single-column {
+    max-width: 420px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 40px 10px !important;
+}
+
+body.single-column section {
+    margin-bottom: 30px;
+}
+
 .inter{
     font-family: "Inter", serif;
     font-optical-sizing: auto;
