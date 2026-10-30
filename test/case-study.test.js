@@ -134,9 +134,9 @@ test('pictures use the required formats and fallbacks in order', { skip: !pageEx
   ].map((match) => match[0]);
   const expectedImages = [
     'bot-team-hero',
-    'fig1-roles',
-    'fig2-approval',
-    'fig3-compute',
+    'bot-team-fig1-roles',
+    'bot-team-fig2-approval',
+    'bot-team-fig3-compute',
   ];
 
   assert.equal(pictures.length, 4);
