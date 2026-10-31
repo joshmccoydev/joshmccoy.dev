@@ -47,6 +47,12 @@ function headingMatches(html, tagName) {
   ];
 }
 
+function getTitleText(html) {
+  const title = headingMatches(html, 'title')[0];
+  assert.ok(title, 'Expected a title element');
+  return normalizeText(title[1]);
+}
+
 function findMeta(html, key) {
   return findTags(html, 'meta').find(
     (tag) => getAttribute(tag, 'property') === key || getAttribute(tag, 'name') === key,
@@ -82,7 +88,7 @@ test('headings and pending-review markers are correct', { skip: !pageExists }, (
     normalizeText(match[1]),
   );
 
-  assert.deepEqual(h1s, ['I run my own work with a team of 15 AI assistants']);
+  assert.deepEqual(h1s, ['i run my own work with 15 ai assistants']);
   assert.deepEqual(h2s, [
     'The problem',
     'What it does',
@@ -109,8 +115,52 @@ test('call to action and customer words are present', { skip: !pageExists }, () 
     ),
     'Expected the email link',
   );
-  assert.ok(html.includes('I was doing everything myself'));
-  assert.ok(html.includes('about 5 hours a week'));
+  assert.ok(
+    html.includes('i was doing everything myself, and the ai side of it was a mess.'),
+  );
+  assert.ok(
+    html.includes(
+      'my rough estimate is about 5 hours a week saved on routine work alone',
+    ),
+  );
+});
+
+test('title and descriptions match the new copy', { skip: !pageExists }, () => {
+  const html = readPage();
+  const title = 'i run my own work with 15 ai assistants · Josh McCoy';
+  const description =
+    '15 assistants. one job each. they draft. i approve. how i run my own work with ai.';
+
+  assert.equal(getTitleText(html), title);
+  assert.equal(getAttribute(findMeta(html, 'og:title') ?? '', 'content'), title);
+  assert.equal(
+    getAttribute(findMeta(html, 'description') ?? '', 'content'),
+    description,
+  );
+  assert.equal(
+    getAttribute(findMeta(html, 'og:description') ?? '', 'content'),
+    description,
+  );
+  assert.equal(
+    getAttribute(findMeta(html, 'og:image:alt') ?? '', 'content'),
+    description,
+  );
+});
+
+test('new narrative copy is present', { skip: !pageExists }, () => {
+  const html = readPage();
+  const normalizedHtml = html
+    .replaceAll('&#39;', "'")
+    .replaceAll('&rsquo;', "'");
+
+  assert.ok(normalizedHtml.includes('15 assistants. one job each.'));
+  assert.ok(normalizedHtml.includes('ask first, always.'));
+  assert.ok(
+    normalizedHtml.includes('none of this takes a computer science degree.'),
+  );
+  assert.ok(
+    normalizedHtml.includes("that's what my monthly retainer is for."),
+  );
 });
 
 test('social metadata and canonical URL are correct', { skip: !pageExists }, () => {
@@ -230,8 +280,8 @@ test('figures appear in the required narrative order', { skip: !pageExists }, ()
   const fig1Index = pictureStartIndex(html, pictures, 'fig1-roles');
   const fig2Index = pictureStartIndex(html, pictures, 'fig2-approval');
   const fig3Index = pictureStartIndex(html, pictures, 'fig3-compute');
-  const draftsIndex = html.indexOf('Drafts, then my yes');
-  const cheapestIndex = html.indexOf('Cheapest tool that works');
+  const draftsIndex = html.indexOf('they draft. i approve.');
+  const cheapestIndex = html.indexOf('cheapest tool that works.');
   const howItWorks = headingMatches(html, 'h2').find(
     (match) => normalizeText(match[1]) === 'How it works',
   );
