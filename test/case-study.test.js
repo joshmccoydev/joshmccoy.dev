@@ -90,7 +90,27 @@ test('headings and pending-review markers are correct', { skip: !pageExists }, (
     'What it shows',
     'Want to run something like this?',
   ]);
-  assert.equal((html.match(/\[needs Josh:/g) ?? []).length, 3);
+  assert.equal((html.match(/\[needs Josh:/g) ?? []).length, 0);
+  assert.equal((html.match(/class="needs-josh"/g) ?? []).length, 0);
+});
+
+test('call to action and customer words are present', { skip: !pageExists }, () => {
+  const html = readPage();
+  const anchors = findTags(html, 'a');
+  const bookingLink = anchors.find(
+    (tag) => getAttribute(tag, 'href') === 'https://cal.com/mccoybuilt/15min',
+  );
+
+  assert.ok(bookingLink, 'Expected the 15-minute booking link');
+  assert.ok((getAttribute(bookingLink, 'class') ?? '').split(/\s+/).includes('btn-primary'));
+  assert.ok(
+    anchors.some(
+      (tag) => getAttribute(tag, 'href') === 'mailto:josh@mccoybuilt.com',
+    ),
+    'Expected the email link',
+  );
+  assert.ok(html.includes('I was doing everything myself'));
+  assert.ok(html.includes('about 5 hours a week'));
 });
 
 test('social metadata and canonical URL are correct', { skip: !pageExists }, () => {
