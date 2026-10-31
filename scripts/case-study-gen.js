@@ -121,7 +121,7 @@ p{margin:0;text-wrap:pretty}
 function usage() {
   return (
     'Usage: scripts/case-study-gen.js --copy <copy.md> ' +
-    '--assets <dir> --slug <slug> --root <dir>'
+    '--assets <dir> --slug <slug> --root <dir> [--site <url>]'
   );
 }
 
@@ -131,7 +131,13 @@ function fail(message) {
 
 function parseArgs(argv) {
   const values = {};
-  const names = new Set(['--copy', '--assets', '--slug', '--root']);
+  const names = new Set([
+    '--copy',
+    '--assets',
+    '--slug',
+    '--root',
+    '--site',
+  ]);
 
   for (let index = 0; index < argv.length; index += 1) {
     const argument = argv[index];
@@ -163,6 +169,11 @@ function parseArgs(argv) {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(values.slug)) {
     fail(`Invalid slug: ${values.slug}`);
   }
+  if (values.slug === 'bot-team') {
+    fail('bot-team belongs on j0sh.wtf, not joshmccoy.dev');
+  }
+
+  values.site = (values.site ?? 'https://joshmccoy.dev').replace(/\/+$/, '');
 
   return values;
 }
@@ -412,20 +423,18 @@ function renderSection(section, slug) {
   ].join('\n');
 }
 
-function metadataFor(slug, title) {
+function metadataFor(slug, title, site) {
   const pageTitle = `${title} \u00b7 Josh McCoy`;
-  const description =
-    slug === 'bot-team'
-      ? '15 assistants. one job each. they draft. i approve. how i run my own work with ai.'
-      : `${title}. a case study by Josh McCoy.`;
-  const canonical = `https://joshmccoy.dev/case-studies/${slug}/`;
-  const ogImage = `https://joshmccoy.dev/img/case-studies/${slug}/${slug}-og.png`;
+  const description = `${title}. a case study by Josh McCoy.`;
+  const canonical = `${site}/case-studies/${slug}/`;
+  const ogImage = `${site}/img/case-studies/${slug}/${slug}-og.png`;
+  const siteName = new URL(site).host;
 
-  return { pageTitle, description, canonical, ogImage };
+  return { pageTitle, description, canonical, ogImage, siteName };
 }
 
-function renderPage(parsed, slug) {
-  const metadata = metadataFor(slug, parsed.title);
+function renderPage(parsed, slug, site) {
+  const metadata = metadataFor(slug, parsed.title, site);
   const sections = parsed.sections.map((section) =>
     renderSection(section, slug),
   );
@@ -440,7 +449,7 @@ function renderPage(parsed, slug) {
 <meta name="theme-color" content="#0a0a0b">
 <link rel="canonical" href="${metadata.canonical}">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="joshmccoy.dev">
+<meta property="og:site_name" content="${escapeHtml(metadata.siteName)}">
 <meta property="og:title" content="${escapeHtml(metadata.pageTitle)}">
 <meta property="og:description" content="${escapeHtml(metadata.description)}">
 <meta property="og:url" content="${metadata.canonical}">
@@ -449,7 +458,6 @@ function renderPage(parsed, slug) {
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="${escapeHtml(metadata.description)}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@j0shdotwtf">
 <meta name="twitter:image" content="${metadata.ogImage}">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -558,7 +566,7 @@ function main(argv = process.argv.slice(2)) {
     const source = fs.readFileSync(copyPath, 'utf8');
     const parsed = parseCopy(source);
     const images = loadImages(assetsPath, args.slug);
-    const html = renderPage(parsed, args.slug);
+    const html = renderPage(parsed, args.slug, args.site);
     writeOutput(root, args.slug, html, images);
 
     process.stdout.write(
