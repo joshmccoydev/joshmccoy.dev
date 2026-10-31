@@ -102,7 +102,7 @@ test('call to action and customer words are present', { skip: !pageExists }, () 
   );
 
   assert.ok(bookingLink, 'Expected the 15-minute booking link');
-  assert.equal(getAttribute(bookingLink, 'class'), 'btn-primary');
+  assert.ok((getAttribute(bookingLink, 'class') ?? '').split(/\s+/).includes('btn-primary'));
   assert.ok(
     anchors.some(
       (tag) => getAttribute(tag, 'href') === 'mailto:josh@mccoybuilt.com',
