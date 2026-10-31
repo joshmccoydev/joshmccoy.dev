@@ -54,17 +54,17 @@ test('cardsFromPages extracts, normalizes, and sorts page cards', (t) => {
   );
   writeFixture(
     root,
-    'case-studies/bot-team/index.html',
+    'case-studies/sample-shop/index.html',
     page('Fallback title', {
-      ogTitle: 'Bot Team - Approval Routing — joshmccoy.dev',
+      ogTitle: 'Sample Shop - Approval Routing — joshmccoy.dev',
     }),
   );
 
   assert.deepEqual(cardsFromPages(root), [
     {
       site: 'joshmccoy.dev',
-      slug: 'case-studies-bot-team',
-      title: 'Bot Team - Approval Routing',
+      slug: 'case-studies-sample-shop',
+      title: 'Sample Shop - Approval Routing',
       eyebrow: 'case studies',
     },
     {
