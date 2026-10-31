@@ -98,6 +98,59 @@ test('cardsFromPages excludes WOW content and ignored locations', (t) => {
   );
 });
 
+test('cardsFromPages skips _redirects sources and bot-team', (t) => {
+  const assertOnlyVisible = (cards) => {
+    assert.equal(cards.length, 1);
+    assert.equal(cards[0].slug, 'visible');
+    assert.doesNotMatch(
+      cards
+        .flatMap(({ slug, title }) => [slug, title])
+        .join('\n'),
+      /bot-team|bot team|moved/i,
+    );
+  };
+
+  const redirectRoot = makeFixture(t);
+  writeFixture(
+    redirectRoot,
+    '_redirects',
+    [
+      '/moved/ https://example.com/moved/ 301',
+      '/moved https://example.com/moved/ 301',
+      '# comment',
+    ].join('\n'),
+  );
+  writeFixture(
+    redirectRoot,
+    'moved/index.html',
+    page('Moved page'),
+  );
+  writeFixture(
+    redirectRoot,
+    'case-studies/bot-team/index.html',
+    page('Bot team'),
+  );
+  writeFixture(
+    redirectRoot,
+    'visible.html',
+    page('Visible | joshmccoy.dev'),
+  );
+  assertOnlyVisible(cardsFromPages(redirectRoot));
+
+  const noRedirectRoot = makeFixture(t);
+  writeFixture(
+    noRedirectRoot,
+    'case-studies/bot-team/index.html',
+    page('Bot team'),
+  );
+  writeFixture(
+    noRedirectRoot,
+    'visible.html',
+    page('Visible | joshmccoy.dev'),
+  );
+  assertOnlyVisible(cardsFromPages(noRedirectRoot));
+});
+
 test('cardsFromPages rejects empty titles and duplicate slugs', (t) => {
   const emptyRoot = makeFixture(t);
   writeFixture(
