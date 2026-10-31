@@ -207,6 +207,36 @@ function hasWowSegment(relativePath) {
   });
 }
 
+function canonicalSitePath(value) {
+  const slashPath = String(value).replaceAll(path.sep, '/');
+  const rootedPath = slashPath.startsWith('/') ? slashPath : `/${slashPath}`;
+  const withoutTrailingSlash = rootedPath.replace(/\/+$/, '') || '/';
+
+  return (
+    withoutTrailingSlash
+      .replace(/\/index\.html?$/i, '')
+      .replace(/\.html?$/i, '') || '/'
+  );
+}
+
+function redirectSources(root) {
+  const redirectsPath = path.join(root, '_redirects');
+  if (!fs.existsSync(redirectsPath)) {
+    return new Set();
+  }
+
+  const sources = new Set();
+  for (const line of fs.readFileSync(redirectsPath, 'utf8').split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) {
+      continue;
+    }
+    const source = trimmed.split(/\s+/, 1)[0];
+    sources.add(canonicalSitePath(source));
+  }
+  return sources;
+}
+
 function findPages(root) {
   const pages = [];
 
@@ -261,8 +291,18 @@ export function slugFor(relativePath) {
 export function cardsFromPages(root) {
   const cards = [];
   const slugs = new Set();
+  const redirectedPaths = redirectSources(root);
+  const botTeamPath = '/case-studies/bot-team';
 
   for (const page of findPages(root)) {
+    const sitePath = canonicalSitePath(page.relativePath);
+    if (
+      sitePath === botTeamPath ||
+      sitePath.startsWith(`${botTeamPath}/`) ||
+      redirectedPaths.has(sitePath)
+    ) {
+      continue;
+    }
     if (hasWowSegment(page.relativePath)) {
       continue;
     }
@@ -385,6 +425,7 @@ export async function renderCards(
         '--disable-gpu',
         '--hide-scrollbars',
         '--window-size=1200,630',
+        '--host-resolver-rules=MAP * ~NOTFOUND , EXCLUDE localhost',
         `--screenshot=${screenshotPath}`,
         '--virtual-time-budget=3000',
         pathToFileURL(tempHtmlPath).href,
