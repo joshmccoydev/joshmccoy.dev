@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://joshmccoy.dev/sitemap.xml
