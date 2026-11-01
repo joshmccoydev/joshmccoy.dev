@@ -4,49 +4,116 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-const PUBLIC_FILES = [
-  '404.html',
-  '_headers',
-  '_redirects',
-  'case-studies/x/index.html',
-  'fonts/a.woff2',
-  'img/og/home.png',
-  'index.html',
-  'og.png',
-  'robots.txt',
-  'tokens.css',
-];
-
 const REPO_ROOT = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   '..',
 );
 const DEFAULT_DEST = '/workspace/sites/joshmccoy-dev/public';
+const PUBLIC_DIRECTORIES = new Set(['case-studies', 'fonts', 'img']);
+const EXCLUDED_DIRECTORIES = new Set([
+  'node_modules',
+  'scripts',
+  'test',
+]);
+const ROOT_FILE_NAMES = new Set([
+  '_headers',
+  '_redirects',
+  'robots.txt',
+  'site.webmanifest',
+  'sitemap.xml',
+  'tokens.css',
+]);
+
+function isRootPublicFile(name) {
+  return (
+    ROOT_FILE_NAMES.has(name) ||
+    name.endsWith('.html') ||
+    name.endsWith('.png') ||
+    /^favicon\./.test(name)
+  );
+}
+
+function isExcludedFile(name) {
+  return (
+    name.endsWith('.md') ||
+    (name.startsWith('package') && name.endsWith('.json'))
+  );
+}
 
 export function planSync(root) {
   const absoluteRoot = path.resolve(root);
+  const files = [];
 
-  return PUBLIC_FILES.filter((relativePath) => {
-    const absolutePath = path.join(absoluteRoot, relativePath);
-    return fs.existsSync(absolutePath) && fs.statSync(absolutePath).isFile();
-  }).sort();
+  function walk(directory, relativeDirectory = '') {
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      if (entry.name.startsWith('.')) {
+        continue;
+      }
+
+      const relativePath = relativeDirectory
+        ? path.posix.join(relativeDirectory, entry.name)
+        : entry.name;
+      const absolutePath = path.join(directory, entry.name);
+
+      if (entry.isDirectory()) {
+        if (EXCLUDED_DIRECTORIES.has(entry.name)) {
+          continue;
+        }
+
+        const rootDirectory = relativePath.split('/')[0];
+        if (relativeDirectory === '' || PUBLIC_DIRECTORIES.has(rootDirectory)) {
+          walk(absolutePath, relativePath);
+        }
+        continue;
+      }
+
+      if (!entry.isFile() || isExcludedFile(entry.name)) {
+        continue;
+      }
+
+      if (relativeDirectory === '') {
+        if (isRootPublicFile(entry.name)) {
+          files.push(relativePath);
+        }
+        continue;
+      }
+
+      const rootDirectory = relativePath.split('/')[0];
+      if (
+        PUBLIC_DIRECTORIES.has(rootDirectory) &&
+        relativePath !== 'img/og/manifest.json'
+      ) {
+        files.push(relativePath);
+      }
+    }
+  }
+
+  walk(absoluteRoot);
+  return files.sort();
 }
 
 export function syncPublic(root, destination, { apply = false } = {}) {
+  const files = planSync(root);
+
   if (!apply) {
-    return { applied: false };
+    return { files, applied: false };
   }
 
   const absoluteRoot = path.resolve(root);
   const absoluteDestination = path.resolve(destination);
-  for (const relativePath of planSync(absoluteRoot)) {
+  for (const relativePath of files) {
     const source = path.join(absoluteRoot, relativePath);
     const target = path.join(absoluteDestination, relativePath);
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.copyFileSync(source, target);
   }
 
-  return { applied: true };
+  const result = { applied: true };
+  Object.defineProperty(result, 'files', {
+    enumerable: false,
+    get: () => files,
+  });
+  return result;
 }
 
 function parseCliArguments(argv) {
