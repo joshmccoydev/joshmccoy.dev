@@ -25,6 +25,20 @@ const PLANNED_FILES = [
   'tokens.css',
 ];
 
+const RULE_BASED_FILES = [
+  'about.html',
+  'apple-touch-icon.png',
+  'case-studies/y/index.html',
+  'favicon.ico',
+  'favicon.svg',
+  'fonts/OFL.txt',
+  'fonts/geist.woff2',
+  'icon-192.png',
+  'img/case-studies/y/pic.png',
+  'site.webmanifest',
+  'sitemap.xml',
+];
+
 const PNG_SIGNATURE = Buffer.from([0x89, 0x50, 0x4e, 0x47]);
 
 function makeFixture(t) {
@@ -168,10 +182,79 @@ test('planSync returns only the sorted public site allowlist', (t) => {
   assert.deepEqual(planSync(root), PLANNED_FILES);
 });
 
+test('planSync selects public files by rule for a differently named fixture', (t) => {
+  const root = makeFixture(t);
+
+  for (const relativePath of [
+    'about.html',
+    'favicon.ico',
+    'favicon.svg',
+    'apple-touch-icon.png',
+    'icon-192.png',
+    'site.webmanifest',
+    'sitemap.xml',
+    'fonts/geist.woff2',
+    'fonts/OFL.txt',
+    'img/case-studies/y/pic.png',
+    'case-studies/y/index.html',
+    'img/og/manifest.json',
+    'scripts/a.js',
+    'test/b.js',
+    'NOTES.md',
+    'package-lock.json',
+    '.gitignore',
+  ]) {
+    writeFixture(root, relativePath, `fixture:${relativePath}\n`);
+  }
+
+  assert.deepEqual(planSync(root), RULE_BASED_FILES);
+});
+
+test('planSync selects public files from the real repository', () => {
+  const plannedFiles = planSync(REPO_ROOT);
+
+  for (const requiredPath of [
+    'index.html',
+    'img/og/home.png',
+    'fonts/geist-latin-var.woff2',
+    'favicon.svg',
+    'site.webmanifest',
+    'sitemap.xml',
+  ]) {
+    assert.ok(
+      plannedFiles.includes(requiredPath),
+      `planSync must include ${requiredPath}`,
+    );
+  }
+
+  for (const relativePath of plannedFiles) {
+    assert.ok(
+      !relativePath.startsWith('scripts/'),
+      `planSync must exclude ${relativePath}`,
+    );
+    assert.ok(
+      !relativePath.startsWith('test/'),
+      `planSync must exclude ${relativePath}`,
+    );
+    assert.ok(
+      !relativePath.startsWith('.git'),
+      `planSync must exclude ${relativePath}`,
+    );
+    assert.ok(
+      !relativePath.endsWith('.md'),
+      `planSync must exclude ${relativePath}`,
+    );
+    assert.notEqual(relativePath, 'img/og/manifest.json');
+  }
+});
+
 test('syncPublic defaults to a dry run and applies without deleting extras', (t) => {
   const { root, destination } = makeSyncFixture(t);
 
-  assert.deepEqual(syncPublic(root, destination), { applied: false });
+  assert.deepEqual(syncPublic(root, destination), {
+    files: PLANNED_FILES,
+    applied: false,
+  });
   assert.deepEqual(listFiles(destination), []);
 
   writeFixture(destination, 'keep.txt', 'pre-existing\n');
@@ -194,4 +277,15 @@ test('syncPublic defaults to a dry run and applies without deleting extras', (t)
     fs.readFileSync(path.join(destination, 'keep.txt'), 'utf8'),
     'pre-existing\n',
   );
+});
+
+test('syncPublic without options returns the plan without applying it', (t) => {
+  const { root, destination } = makeSyncFixture(t);
+  const plannedFiles = planSync(root);
+
+  assert.deepEqual(syncPublic(root, destination), {
+    files: plannedFiles,
+    applied: false,
+  });
+  assert.deepEqual(listFiles(destination), []);
 });
