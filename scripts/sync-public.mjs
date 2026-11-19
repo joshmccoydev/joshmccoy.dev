@@ -8,8 +8,7 @@ const REPO_ROOT = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   '..',
 );
-const DEFAULT_DEST = '/workspace/sites/joshmccoy-dev/public';
-const PUBLIC_DIRECTORIES = new Set(['case-studies', 'fonts', 'img']);
+const PUBLIC_DIRECTORIES = new Set(['case-studies', 'fonts', 'img', 'log']);
 const EXCLUDED_DIRECTORIES = new Set([
   'node_modules',
   'scripts',
@@ -117,7 +116,7 @@ export function syncPublic(root, destination, { apply = false } = {}) {
 }
 
 function parseCliArguments(argv) {
-  const options = { apply: false, dest: DEFAULT_DEST };
+  const options = { apply: false, dest: null };
 
   for (let index = 0; index < argv.length; index += 1) {
     const argument = argv[index];
@@ -143,20 +142,36 @@ function parseCliArguments(argv) {
   return options;
 }
 
-function main(argv) {
+export function publishDestination(argv, env = process.env) {
   const options = parseCliArguments(argv);
+  if (!options.apply) {
+    return null;
+  }
+
+  const destination = options.dest || env.JMD_PUBLIC_DEST || '';
+  if (!destination) {
+    throw new Error(
+      'Missing publish destination: pass --dest <dir> or set JMD_PUBLIC_DEST',
+    );
+  }
+
+  return destination;
+}
+
+function main(argv) {
+  const destination = publishDestination(argv);
   const plannedFiles = planSync(REPO_ROOT);
 
   for (const relativePath of plannedFiles) {
     console.log(relativePath);
   }
 
-  if (!options.apply) {
+  if (!destination) {
     console.log('dry-run: pass --apply to copy');
     return;
   }
 
-  syncPublic(REPO_ROOT, options.dest, { apply: true });
+  syncPublic(REPO_ROOT, destination, { apply: true });
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
