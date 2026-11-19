@@ -29,19 +29,18 @@ const FIGURE_DETAILS = {
     width: 1600,
     height: 900,
     alt:
-      'Headline &quot;I run my own work with a team of 15 AI assistants,&quot; ' +
+      'Headline “i run my own work with ai assistants” ' +
       'next to a terminal listing assistant roles and the rule ' +
-      '&quot;ask first, always.&quot;',
+      '“ask first, always.”',
   },
   'fig1-roles': {
     width: 1600,
     height: 640,
     alt:
-      'Twelve work roles in three groups: running the business (chief of staff, ' +
-      'sales lead, editor, social media), building (engineering lead, builder, ' +
-      'designer, researcher) and keeping it running (CFO, inbox manager, ' +
-      'calendar, librarian), plus three personal assistants. All of them share ' +
-      'one notebook.',
+      'Work roles in three groups: running the business (chief of staff, ' +
+      'sales, editor, social media), building (engineering lead, builder, ' +
+      'designer, research) and keeping it running (CFO, inbox, calendar, ' +
+      "librarian), plus a few for Josh’s own life. All of them share one notebook.",
   },
   'fig2-approval': {
     width: 1600,
