@@ -1,0 +1,13 @@
+# Static assets for joshmccoy.dev.
+# This file declares no routes and no custom domain, so deploying it does
+# not change DNS. It also declares no Access policy. Leave Cloudflare
+# Access as it is in the dashboard.
+# GitHub Actions deploys only after the CF_WORKER_NAME repository variable
+# is set to the existing Worker. Do not point that name at a new Worker.
+name = "joshmccoy-dev"
+compatibility_date = "2026-11-19"
+
+[assets]
+directory = "./dist"
+not_found_handling = "404-page"
+html_handling = "auto-trailing-slash"

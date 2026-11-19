@@ -1,0 +1,12 @@
+{
+  "name": "joshmccoy-dev",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "cards": "node scripts/share-cards.mjs",
+    "dist": "node scripts/sync-public.mjs --apply --dest dist"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
