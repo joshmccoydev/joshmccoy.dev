@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { cardsFromPages, slugFor } from '../scripts/share-cards.mjs';
 import { planSync, syncPublic } from '../scripts/sync-public.mjs';
@@ -11,6 +12,7 @@ const REPO_ROOT = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   '..',
 );
+const SYNC_SCRIPT = path.join(REPO_ROOT, 'scripts', 'sync-public.mjs');
 
 const PLANNED_FILES = [
   '404.html',
@@ -302,4 +304,51 @@ test('syncPublic without options returns the plan without applying it', (t) => {
     applied: false,
   });
   assert.deepEqual(listFiles(destination), []);
+});
+
+test('sync CLI requires an explicit destination for --apply', (t) => {
+  const workspace = makeFixture(t);
+  const result = spawnSync(process.execPath, [SYNC_SCRIPT, '--apply'], {
+    cwd: workspace,
+    env: { ...process.env, JMD_PUBLIC_DEST: '' },
+    encoding: 'utf8',
+  });
+  if (result.error?.code === 'EPERM') {
+    t.skip('sandbox blocks child processes');
+    return;
+  }
+  assert.equal(result.status, 1);
+  assert.match(`${result.stdout}${result.stderr}`, /Missing destination.*--dest.*JMD_PUBLIC_DEST/);
+});
+
+test('sync CLI applies into --dest and resolves a relative destination from cwd', (t) => {
+  const workspace = makeFixture(t);
+  const destination = path.join(workspace, 'published');
+  const result = spawnSync(process.execPath, [SYNC_SCRIPT, '--apply', '--dest', 'published'], {
+    cwd: workspace,
+    encoding: 'utf8',
+  });
+  if (result.error?.code === 'EPERM') {
+    t.skip('sandbox blocks child processes');
+    return;
+  }
+  assert.equal(result.status, 0, result.stderr);
+  assert.ok(fs.existsSync(path.join(destination, 'index.html')));
+  assert.ok(fs.existsSync(path.join(destination, 'case-studies', 'bot-team', 'index.html')));
+});
+
+test('sync CLI accepts JMD_PUBLIC_DEST for --apply', (t) => {
+  const workspace = makeFixture(t);
+  const destination = path.join(workspace, 'from-env');
+  const result = spawnSync(process.execPath, [SYNC_SCRIPT, '--apply'], {
+    cwd: workspace,
+    env: { ...process.env, JMD_PUBLIC_DEST: destination },
+    encoding: 'utf8',
+  });
+  if (result.error?.code === 'EPERM') {
+    t.skip('sandbox blocks child processes');
+    return;
+  }
+  assert.equal(result.status, 0, result.stderr);
+  assert.ok(fs.existsSync(path.join(destination, 'index.html')));
 });

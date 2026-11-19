@@ -8,7 +8,6 @@ const REPO_ROOT = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   '..',
 );
-const DEFAULT_DEST = '/workspace/sites/joshmccoy-dev/public';
 const PUBLIC_DIRECTORIES = new Set([
   'case-studies',
   'fonts',
@@ -124,7 +123,7 @@ export function syncPublic(root, destination, { apply = false } = {}) {
 }
 
 function parseCliArguments(argv) {
-  const options = { apply: false, dest: DEFAULT_DEST };
+  const options = { apply: false, dest: process.env.JMD_PUBLIC_DEST };
 
   for (let index = 0; index < argv.length; index += 1) {
     const argument = argv[index];
@@ -161,6 +160,10 @@ function main(argv) {
   if (!options.apply) {
     console.log('dry-run: pass --apply to copy');
     return;
+  }
+
+  if (!options.dest) {
+    throw new Error('Missing destination: pass --dest <dir> or set JMD_PUBLIC_DEST');
   }
 
   syncPublic(REPO_ROOT, options.dest, { apply: true });

@@ -1,3 +1,7 @@
 dist/
 node_modules/
 .wrangler/
+.env
+.env.*
+.DS_Store
+*.log
