@@ -1,8 +1,8 @@
 /* joshmccoy.dev tokens. Sibling of j0sh.wtf (dark + lime), tuned to be calmer and more technical.
    Lime is a signal: status dots, focus rings, the cursor and the single primary CTA. It is never used for body copy.
    Type scale 1.25 (major third) from 16px. 8px spacing grid. Contrast ratios are WCAG 2.x, computed against each surface. */
-@font-face{font-family:"Geist";src:url("fonts/geist-latin-var.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
-@font-face{font-family:"Geist Mono";src:url("fonts/geist-mono-latin-var.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Geist";src:url("fonts/geist-latin-var.3c002e62.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url("fonts/geist-mono-latin-var.4fc2821c.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
 /* Metric-matched fallbacks keep CLS near 0 while the webfonts swap in */
 @font-face{font-family:"Geist Fallback";src:local("Arial"),local("Helvetica"),local("Liberation Sans");size-adjust:104%;ascent-override:92%;descent-override:22%;line-gap-override:0%}
 @font-face{font-family:"Geist Mono Fallback";src:local("Courier New"),local("Liberation Mono");size-adjust:100%;ascent-override:90%;descent-override:24%}

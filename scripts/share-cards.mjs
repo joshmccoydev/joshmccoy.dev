@@ -345,10 +345,10 @@ function escapeHtml(value) {
 
 export function cardHtml(card, { fontDir = DEFAULT_FONT_DIR } = {}) {
   const sansFont = pathToFileURL(
-    path.join(path.resolve(fontDir), 'geist-latin-var.woff2'),
+    path.join(path.resolve(fontDir), 'geist-latin-var.3c002e62.woff2'),
   ).href;
   const monoFont = pathToFileURL(
-    path.join(path.resolve(fontDir), 'geist-mono-latin-var.woff2'),
+    path.join(path.resolve(fontDir), 'geist-mono-latin-var.4fc2821c.woff2'),
   ).href;
   const site = escapeHtml(String(card.site ?? SITE).toLowerCase());
   const eyebrow = escapeHtml(String(card.eyebrow ?? '').toLowerCase());

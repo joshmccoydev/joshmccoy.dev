@@ -216,7 +216,7 @@ test('planSync selects public files from the real repository', () => {
   for (const requiredPath of [
     'index.html',
     'img/og/home.png',
-    'fonts/geist-latin-var.woff2',
+    'fonts/geist-latin-var.3c002e62.woff2',
     'favicon.svg',
     'site.webmanifest',
     'sitemap.xml',
