@@ -2,29 +2,58 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Not found · joshmccoy.dev</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="This page doesn't exist on joshmccoy.dev.">
-<meta name="theme-color" content="#0a0a0b">
+<meta name="description" content="This page does not exist on joshmccoy.dev.">
+<meta name="theme-color" content="#14120e" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f1e7" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="/tokens.css">
-<style>
-body{margin:0;min-height:100vh;display:grid;place-items:center;padding:var(--gutter);background:var(--c-bg);color:var(--c-text);font:400 var(--fs-0)/var(--lh-body) var(--font-sans)}
-main{max-width:40ch}
-p{margin:0}
-.cmd{font:500 var(--fs--1)/1.75 var(--font-mono);color:var(--c-muted)}
-.cmd b{color:var(--c-signal);font-weight:500}
-h1{margin:var(--s-2) 0 var(--s-3);font-size:var(--fs-3);line-height:var(--lh-snug);font-weight:600;letter-spacing:var(--tracking-tight)}
-a{display:inline-flex;align-items:center;min-height:var(--tap);padding:0 var(--s-3);border-radius:var(--r-md);background:var(--c-signal);color:var(--c-signal-ink);font-weight:600;text-decoration:none}
-a:focus-visible{outline:2px solid var(--c-focus);outline-offset:3px}
-</style>
+<link rel="stylesheet" href="/site.css">
 </head>
 <body>
-<main>
-  <p class="cmd"><b>$</b> cd this-page<br>no such file or directory</p>
-  <h1>Nothing built here yet.</h1>
-  <a href="/">Back to joshmccoy.dev</a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap top-bar">
+    <a class="brand" href="/" aria-label="joshmccoy.dev home">
+      <span class="stamp" aria-hidden="true">JM</span>
+      <span class="brand-name">joshmccoy.dev</span>
+    </a>
+    <div class="tools">
+      <nav class="nav" aria-label="Main">
+        <a href="/work/">Work</a>
+        <a href="/log/">Log</a>
+        <a href="/#hire">Hire</a>
+      </nav>
+      <div class="theme" role="radiogroup" aria-label="Color theme">
+        <label><input type="radio" name="theme" id="theme-system" checked> Auto</label>
+        <label><input type="radio" name="theme" id="theme-light"> Light</label>
+        <label><input type="radio" name="theme" id="theme-dark"> Dark</label>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="main">
+  <header class="page-head">
+    <div class="wrap">
+      <p class="label">404</p>
+      <h1>Nothing built here yet.</h1>
+      <p class="deck">That path is not on this site.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/">Back to joshmccoy.dev</a>
+      </div>
+    </div>
+  </header>
 </main>
+<footer class="site-foot">
+  <div class="wrap">
+    <span>© 2026 Josh McCoy · Coastal Bend, Texas</span>
+    <a href="mailto:josh@mccoybuilt.com">josh@mccoybuilt.com</a>
+  </div>
+</footer>
 </body>
 </html>

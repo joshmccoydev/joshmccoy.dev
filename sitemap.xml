@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://joshmccoy.dev/</loc></url>
+  <url><loc>https://joshmccoy.dev/</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://joshmccoy.dev/log/</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://joshmccoy.dev/work/</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://joshmccoy.dev/work/bot-team/</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://joshmccoy.dev/work/brief/</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://joshmccoy.dev/work/dad-cant-draw/</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://joshmccoy.dev/work/j0sh-wtf/</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://joshmccoy.dev/work/lifedash/</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://joshmccoy.dev/work/owner-math/</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://joshmccoy.dev/work/social/</loc><lastmod>2026-11-19</lastmod></url>
 </urlset>

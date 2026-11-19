@@ -9,7 +9,13 @@ const REPO_ROOT = path.resolve(
   '..',
 );
 const DEFAULT_DEST = '/workspace/sites/joshmccoy-dev/public';
-const PUBLIC_DIRECTORIES = new Set(['case-studies', 'fonts', 'img']);
+const PUBLIC_DIRECTORIES = new Set([
+  'case-studies',
+  'fonts',
+  'img',
+  'log',
+  'work',
+]);
 const EXCLUDED_DIRECTORIES = new Set([
   'node_modules',
   'scripts',
@@ -21,6 +27,7 @@ const ROOT_FILE_NAMES = new Set([
   'robots.txt',
   'site.webmanifest',
   'sitemap.xml',
+  'site.css',
   'tokens.css',
 ]);
 

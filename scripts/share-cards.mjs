@@ -27,18 +27,18 @@ const PAGE_EXTENSIONS = new Set(['.htm', '.html']);
 const TOKENS = `
 :root{
   color-scheme:dark;
-  --c-bg:#0a0a0b;
-  --c-surface:#111113;
-  --c-surface-2:#18181b;
-  --c-line:#27272a;
-  --c-line-strong:#52525b;
-  --c-text:#ededef;
-  --c-muted:#a1a1aa;
-  --c-subtle:#8b8b94;
-  --c-signal:#c6ff3d;
-  --c-signal-ink:#0a0a0b;
-  --c-signal-wash:rgba(198,255,61,.08);
-  --c-signal-line:rgba(198,255,61,.32);
+  --c-bg:#14120e;
+  --c-surface:#1d1a15;
+  --c-surface-2:#28241d;
+  --c-line:#3a342c;
+  --c-line-strong:#8d8476;
+  --c-text:#f4efe6;
+  --c-muted:#c9c0b3;
+  --c-subtle:#b3a898;
+  --c-signal:#ff8a4c;
+  --c-signal-ink:#1a100c;
+  --c-signal-wash:rgba(255,138,76,.12);
+  --c-signal-line:rgba(255,138,76,.5);
   --c-focus:var(--c-signal);
   --font-sans:"Geist","Geist Fallback",system-ui,-apple-system,"Segoe UI",sans-serif;
   --font-mono:"Geist Mono","Geist Mono Fallback",ui-monospace,SFMono-Regular,Menlo,monospace;
@@ -363,13 +363,17 @@ ${CARD_STYLE}
 <div class="brand">${site}<i></i></div>
 <div class="eyebrow">${eyebrow}</div>
 <h1 data-max="64" data-min="46">${title}</h1>
-<div class="foot"><span class="dot"></span>joshmccoy.dev \u00b7 South Texas</div>
+<div class="foot"><span class="dot"></span>Coastal Bend, South Texas</div>
 </div><script>${FIT_SCRIPT}</script></body></html>`;
 }
 
+const CARD_VERSION = 'oxide-2';
+
 export function cacheKey(card) {
   return createHash('sha256')
-    .update(`${card.site ?? ''}${card.title ?? ''}${card.eyebrow ?? ''}`)
+    .update(
+      `${CARD_VERSION}|${card.site ?? ''}|${card.title ?? ''}|${card.eyebrow ?? ''}`,
+    )
     .digest('hex')
     .slice(0, 16);
 }
