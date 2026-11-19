@@ -173,7 +173,7 @@ test('cardsFromPages rejects empty titles and duplicate slugs', (t) => {
   assert.throws(() => cardsFromPages(duplicateRoot));
 });
 
-test('cardHtml builds a lowercase, escaped, local-font card', (t) => {
+test('cardHtml builds an escaped, local-font card', (t) => {
   const root = makeFixture(t);
   const fontDir = path.join(root, 'fonts');
   writeFixture(fontDir, 'fixture.woff2', 'fake font');
@@ -191,9 +191,9 @@ test('cardHtml builds a lowercase, escaped, local-font card', (t) => {
   assert.match(html, /^<!doctype html>/i);
   assert.match(html, /width:\s*1200px/i);
   assert.match(html, /height:\s*630px/i);
-  assert.ok(html.includes('&lt;b&gt;x&lt;/b&gt; &amp; y'));
+  assert.ok(html.includes('&lt;B&gt;X&lt;/B&gt; &amp; Y'));
   assert.ok(html.includes('case studies'));
-  assert.ok(html.includes('South Texas'));
+  assert.ok(html.includes('Coastal Bend, Texas'));
   assert.ok(html.includes('joshmccoy.dev'));
   const fontFaces = html.match(/@font-face\s*\{[^}]*\}/gis) ?? [];
   assert.ok(fontFaces.length > 0);
@@ -218,7 +218,7 @@ test('cardHtml builds a lowercase, escaped, local-font card', (t) => {
     title: 'MIXED Case TITLE',
     eyebrow: 'writing',
   }, { fontDir });
-  assert.ok(otherSiteHtml.includes('mixed case title'));
+  assert.ok(otherSiteHtml.includes('MIXED Case TITLE'));
 });
 
 test('cacheKey is stable, hexadecimal, and title-sensitive', () => {

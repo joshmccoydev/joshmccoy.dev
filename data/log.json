@@ -1,0 +1,72 @@
+[
+  {
+    "slug": "ask-first",
+    "title": "Nothing goes out until I say so",
+    "kicker": "Build note",
+    "summary": "The assistants can draft all day. Sending, posting, and spending are a different job.",
+    "body": [
+      "The useful part of a bot is the draft. The send button is the part that can embarrass you.",
+      "Each one on my bench has a single job. A chief-of-staff assistant moves work between them: sales drafts, edits, research, code, the inbox, the calendar, notes. Anything that would send, post, or spend waits until I say yes.",
+      "When an assistant needs a decision, it lands on one list. I'd rather see a gap than a guess. If the source is missing or stale, it stops.",
+      "I wrote the longer version, with the drawings, on j0sh.wtf."
+    ],
+    "links": [
+      {
+        "href": "https://j0sh.wtf/case-studies/bot-team/",
+        "text": "Read the case study"
+      }
+    ]
+  },
+  {
+    "slug": "lifedash",
+    "title": "A TV that doesn't want a click",
+    "kicker": "Build note",
+    "summary": "Three columns on the television by the desk. No chatbot, no database, nothing to tap.",
+    "body": [
+      "The TV sits across the shop. It should answer a glance, not ask me to log in.",
+      "Three columns: personal, the business, and the build. It shows what I already keep. No chatbot, no database, nothing to click.",
+      "It's open source. The useful part was what I left out."
+    ],
+    "links": [
+      {
+        "href": "https://github.com/joshmccoydev/life-dashboard",
+        "text": "View on GitHub",
+        "rel": "me"
+      }
+    ]
+  },
+  {
+    "slug": "shop-sheets",
+    "title": "Spreadsheets for people who run the place",
+    "kicker": "Build note",
+    "summary": "Plate cost, bakery pricing, and what the food cost did this week.",
+    "body": [
+      "The owners I teach rarely need a new app first. They need a number they trust: what a plate costs, what the bakery item should sell for, whether food cost drifted this week.",
+      "OwnerMathSheets is those three sheets, in Excel and Google Sheets. If a formula can't be read out loud, it doesn't stay.",
+      "Still launching. I made it for people who run a kitchen."
+    ],
+    "links": [
+      {
+        "href": "/#owner-math",
+        "text": "See the build"
+      }
+    ]
+  },
+  {
+    "slug": "hand-built",
+    "title": "The hub is hand-written",
+    "kicker": "Build note",
+    "summary": "j0sh.wtf is HTML, a Workers deploy, and no framework. The case studies live there.",
+    "body": [
+      "j0sh.wtf is the hub. Hand-written HTML, Cloudflare Workers, no framework. This site is the shop. That one holds the tool notes and the case studies.",
+      "I kept it static on purpose. On Oct 27, 2026, Lighthouse on a phone scored 100 for performance, accessibility, best practices, and SEO.",
+      "The full bot-team story, with the drawings, lives on j0sh.wtf."
+    ],
+    "links": [
+      {
+        "href": "https://j0sh.wtf",
+        "text": "Visit j0sh.wtf"
+      }
+    ]
+  }
+]

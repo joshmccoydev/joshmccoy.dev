@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { cardsFromPages } from '../scripts/share-cards.mjs';
+import { cardsFromPages, slugFor } from '../scripts/share-cards.mjs';
 import { planSync, syncPublic } from '../scripts/sync-public.mjs';
 
 const REPO_ROOT = path.resolve(
@@ -107,14 +107,35 @@ function metaContents(html, attributeName, attributeValue) {
 }
 
 function pagePathFor(root, slug) {
-  if (slug === 'home') {
-    return path.join(root, 'index.html');
+  const matches = [];
+
+  function walk(directory) {
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      if (entry.name.startsWith('.') || entry.name === 'node_modules') {
+        continue;
+      }
+      const absolutePath = path.join(directory, entry.name);
+      if (entry.isDirectory()) {
+        walk(absolutePath);
+        continue;
+      }
+      if (!/\.html?$/i.test(entry.name)) {
+        continue;
+      }
+      const relativePath = path.relative(root, absolutePath);
+      if (slugFor(relativePath) === slug) {
+        matches.push(absolutePath);
+      }
+    }
   }
 
-  return [
-    path.join(root, slug, 'index.html'),
-    path.join(root, `${slug}.html`),
-  ].find((candidate) => fs.existsSync(candidate));
+  walk(root);
+  assert.equal(
+    matches.length,
+    1,
+    `Expected one page for slug ${slug}, found ${matches.join(', ')}`,
+  );
+  return matches[0];
 }
 
 function makeSyncFixture(t) {

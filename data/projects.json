@@ -1,0 +1,98 @@
+[
+  {
+    "id": "bot-team",
+    "title": "The bot team",
+    "status": "In daily use",
+    "kind": "AI agents",
+    "span": "wide",
+    "diagram": "lanes",
+    "summary": "A bench of AI assistants, each with one job. A chief-of-staff assistant hands work to the others: drafts, edits, research, code, the inbox, the calendar, notes.",
+    "detail": "They can prepare all day. They do not send, post, or spend. That waits for me.",
+    "result": "I still approve every send.",
+    "facts": [
+      { "label": "Approver", "value": "Josh" },
+      { "label": "Auto-sends", "value": "None" },
+      { "label": "Rule", "value": "Ask first" }
+    ],
+    "tags": ["AI agents", "MCP connectors", "Google Workspace", "Obsidian"],
+    "link": {
+      "href": "https://j0sh.wtf/case-studies/bot-team/",
+      "text": "how i run my work"
+    }
+  },
+  {
+    "id": "social-pipeline",
+    "title": "Social pipeline",
+    "status": "In daily use",
+    "kind": "Automation",
+    "diagram": "approve",
+    "summary": "The bots draft a week of posts and line them up. Every Tuesday I keep the ones that sound like me and kill the rest.",
+    "detail": "If I don't get to the queue, it sits. Nothing publishes on its own.",
+    "result": "Posts wait until Tuesday.",
+    "tags": ["Postiz", "AI drafting"]
+  },
+  {
+    "id": "lifedash",
+    "title": "LifeDash",
+    "status": "Open source",
+    "kind": "Dashboard",
+    "diagram": "hud",
+    "summary": "A board for the TV next to my desk. Three columns: personal, the work, and what I'm building.",
+    "detail": "No chatbot, no database, and nothing to click. I built it to be ignored until I glance up.",
+    "result": "The TV keeps itself current.",
+    "tags": ["Next.js 16", "React 19", "TypeScript", "Tailwind 4"],
+    "link": {
+      "href": "https://github.com/joshmccoydev/life-dashboard",
+      "text": "View on GitHub",
+      "rel": "me"
+    }
+  },
+  {
+    "id": "owner-math",
+    "title": "OwnerMathSheets",
+    "status": "Launching",
+    "kind": "Spreadsheets",
+    "diagram": "sheet",
+    "summary": "Spreadsheet templates for people who run the place: a plate-cost calculator, a bakery pricing sheet, and a weekly food-cost tracker.",
+    "detail": "The formulas are the product. If a cell can't be explained out loud, it doesn't stay.",
+    "result": "The cost is visible.",
+    "tags": ["Excel", "Google Sheets"]
+  },
+  {
+    "id": "brief",
+    "title": "The 7:15 brief",
+    "status": "In daily use",
+    "kind": "Automation",
+    "diagram": "cron",
+    "summary": "A weekday morning note. It pulls the calendar, the inbox items that matter, open loops, and whether the bots are quiet.",
+    "detail": "It lands in the notes I already keep, before I start. One page, then I go to work.",
+    "result": "The day starts written down.",
+    "tags": ["Scheduled agent", "Calendar", "Email", "Daily notes"]
+  },
+  {
+    "id": "j0sh",
+    "title": "j0sh.wtf",
+    "status": "Live",
+    "kind": "Hub",
+    "span": "wide",
+    "diagram": "wordmark",
+    "summary": "My hub for AI tools, minus the hype. Hand-written HTML on Cloudflare Workers, no framework.",
+    "detail": "On Oct 27, 2026 it scored 100 on all four Lighthouse mobile categories. The case studies live there, including the bot team.",
+    "result": "Static, and fast on a phone.",
+    "tags": ["HTML/CSS", "Cloudflare Workers"],
+    "link": {
+      "href": "https://j0sh.wtf",
+      "text": "Visit j0sh.wtf"
+    }
+  },
+  {
+    "id": "dad-cant-draw",
+    "title": "Dad Can't Draw",
+    "status": "Built and sold",
+    "tone": "off",
+    "kind": "Company",
+    "diagram": "sold",
+    "summary": "A company I built and sold. It isn't running, so there's no link.",
+    "result": "Built, then sold."
+  }
+]

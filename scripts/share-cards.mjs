@@ -68,7 +68,7 @@ html,body{margin:0}body{width:1200px;height:630px;background:var(--c-bg);color:v
 .brand{font:600 28px/1 var(--font-mono);display:flex;align-items:center}
 .brand i{display:inline-block;width:15px;height:30px;margin-left:4px;background:var(--c-signal)}
 .eyebrow{margin-top:auto;margin-bottom:20px;font:500 18px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--c-subtle)}
-h1{margin:0;font-size:64px;line-height:1.08;letter-spacing:-.03em;font-weight:600;max-width:23ch;text-transform:lowercase;overflow-wrap:anywhere}
+h1{margin:0;font-size:64px;line-height:1.08;letter-spacing:-.03em;font-weight:600;max-width:23ch;overflow-wrap:anywhere}
 h1.clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .foot{margin-top:36px;display:flex;align-items:center;gap:16px;font:500 22px/1 var(--font-mono);color:var(--c-subtle);letter-spacing:.06em;text-transform:uppercase}
 .dot{width:10px;height:10px;border-radius:50%;background:var(--c-signal);box-shadow:0 0 0 5px var(--c-signal-wash)}
@@ -352,7 +352,7 @@ export function cardHtml(card, { fontDir = DEFAULT_FONT_DIR } = {}) {
   ).href;
   const site = escapeHtml(String(card.site ?? SITE).toLowerCase());
   const eyebrow = escapeHtml(String(card.eyebrow ?? '').toLowerCase());
-  const title = escapeHtml(String(card.title ?? '').toLowerCase());
+  const title = escapeHtml(String(card.title ?? ''));
 
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><style>
 @font-face{font-family:"Geist";src:url("${sansFont}") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
@@ -363,7 +363,7 @@ ${CARD_STYLE}
 <div class="brand">${site}<i></i></div>
 <div class="eyebrow">${eyebrow}</div>
 <h1 data-max="64" data-min="46">${title}</h1>
-<div class="foot"><span class="dot"></span>joshmccoy.dev \u00b7 South Texas</div>
+<div class="foot"><span class="dot"></span>joshmccoy.dev \u00b7 Coastal Bend, Texas</div>
 </div><script>${FIT_SCRIPT}</script></body></html>`;
 }
 
@@ -474,6 +474,12 @@ function parseCliArguments(argv) {
 async function main(argv) {
   const options = parseCliArguments(argv);
   const cards = cardsFromPages(REPO_ROOT);
+  cards.push({
+    site: SITE,
+    slug: 'not-found',
+    title: 'Nothing built here yet',
+    eyebrow: '404',
+  });
   if (options.dryRun) {
     console.log(JSON.stringify(cards, null, 2));
     return;
