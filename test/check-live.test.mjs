@@ -4,12 +4,13 @@ import { checkRedirect, checkSitemap, checkWebsite, runChecks } from '../scripts
 
 test('checkWebsite requires the WebSite JSON-LD type', () => {
   assert.equal(checkWebsite('{"@type":"WebSite"}'), true);
-  assert.equal(checkWebsite('{"@type": "WebSite"}'), false);
+  assert.equal(checkWebsite('{"@type": "WebSite"}'), true);
+  assert.equal(checkWebsite('{"@type":"Person"}'), false);
 });
 
-test('checkSitemap rejects lastmod elements', () => {
-  assert.equal(checkSitemap('<urlset><url><loc>/</loc></url></urlset>'), true);
-  assert.equal(checkSitemap('<url><lastmod>2025-01-01</lastmod></url>'), false);
+test('checkSitemap requires the homepage URL', () => {
+  assert.equal(checkSitemap('<url><loc>https://joshmccoy.dev/</loc><lastmod>2026-11-19</lastmod></url>'), true);
+  assert.equal(checkSitemap('<urlset></urlset>'), false);
 });
 
 test('checkRedirect requires the exact permanent redirect', () => {
@@ -20,7 +21,7 @@ test('checkRedirect requires the exact permanent redirect', () => {
 test('runChecks uses injected fetch responses and reports each result', async () => {
   const responses = [
     { status: 200, text: async () => '{"@type":"WebSite"}' },
-    { status: 200, text: async () => '<urlset></urlset>' },
+    { status: 200, text: async () => '<urlset><url><loc>https://joshmccoy.dev/</loc></url></urlset>' },
     { status: 301, headers: new Headers({ location: 'https://j0sh.wtf/case-studies/bot-team/' }) },
   ];
   const calls = [];

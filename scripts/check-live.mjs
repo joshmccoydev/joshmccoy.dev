@@ -3,11 +3,11 @@
 import { pathToFileURL } from 'node:url';
 
 export function checkWebsite(html) {
-  return html.includes('"@type":"WebSite"');
+  return /"@type"\s*:\s*"WebSite"/.test(html);
 }
 
 export function checkSitemap(xml) {
-  return !/<lastmod\b/i.test(xml);
+  return /<loc>https:\/\/joshmccoy\.dev\/<\/loc>/.test(xml);
 }
 
 export function checkRedirect(status, location) {
@@ -21,12 +21,12 @@ export async function runChecks(baseUrl = 'https://joshmccoy.dev/', fetchImpl = 
   const redirectUrl = new URL('/case-studies/bot-team/', base);
 
   const website = await fetchImpl(websiteUrl);
-  const websiteOk = checkWebsite(await website.text());
+  const websiteOk = website.status === 200 && checkWebsite(await website.text());
   console.log(`${websiteOk ? 'PASS' : 'FAIL'} website structured data (HTTP ${website.status})`);
 
   const sitemap = await fetchImpl(sitemapUrl);
-  const sitemapOk = checkSitemap(await sitemap.text());
-  console.log(`${sitemapOk ? 'PASS' : 'FAIL'} sitemap has no lastmod (HTTP ${sitemap.status})`);
+  const sitemapOk = sitemap.status === 200 && checkSitemap(await sitemap.text());
+  console.log(`${sitemapOk ? 'PASS' : 'FAIL'} sitemap lists the homepage (HTTP ${sitemap.status})`);
 
   const redirect = await fetchImpl(redirectUrl, { redirect: 'manual' });
   const redirectOk = checkRedirect(redirect.status, redirect.headers.get('location'));
