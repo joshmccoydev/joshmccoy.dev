@@ -88,7 +88,7 @@ test('headings and pending-review markers are correct', { skip: !pageExists }, (
     normalizeText(match[1]),
   );
 
-  assert.deepEqual(h1s, ['i run my own work with 15 ai assistants']);
+  assert.deepEqual(h1s, ['i run my own work with ai assistants']);
   assert.deepEqual(h2s, [
     'The problem',
     'What it does',
@@ -127,9 +127,9 @@ test('call to action and customer words are present', { skip: !pageExists }, () 
 
 test('title and descriptions match the new copy', { skip: !pageExists }, () => {
   const html = readPage();
-  const title = 'i run my own work with 15 ai assistants · Josh McCoy';
+  const title = 'how i run my own work with ai assistants · Josh McCoy';
   const description =
-    '15 assistants. one job each. they draft. i approve. how i run my own work with ai.';
+    'one job each. they draft. i approve. how i run my own work with ai.';
 
   assert.equal(getTitleText(html), title);
   assert.equal(getAttribute(findMeta(html, 'og:title') ?? '', 'content'), title);
@@ -153,7 +153,7 @@ test('new narrative copy is present', { skip: !pageExists }, () => {
     .replaceAll('&#39;', "'")
     .replaceAll('&rsquo;', "'");
 
-  assert.ok(normalizedHtml.includes('15 assistants. one job each.'));
+  assert.ok(normalizedHtml.includes('one job each.'));
   assert.ok(normalizedHtml.includes('ask first, always.'));
   assert.ok(
     normalizedHtml.includes('none of this takes a computer science degree.'),
@@ -319,4 +319,22 @@ test('every referenced image file exists', { skip: !pageExists }, () => {
     const localPath = path.resolve(repoRoot, reference.replace(/^\/+/, ''));
     assert.ok(fs.existsSync(localPath), `Missing referenced image: ${reference}`);
   });
+});
+
+test('retired copy stays gone from the site: no voxer line, no 15-assistant count', () => {
+  const banned = [/voxer/i, /\b15\s+(?:ai\s+)?assistants\b/i, /fifteen\s+(?:ai\s+)?assistants/i];
+  const files = ['index.html', '404.html', path.join('case-studies', 'bot-team', 'index.html')];
+  for (const dir of ['work', 'log']) {
+    const base = path.join(repoRoot, dir);
+    if (!fs.existsSync(base)) continue;
+    for (const entry of fs.readdirSync(base, { recursive: true })) {
+      if (String(entry).endsWith('.html')) files.push(path.join(dir, String(entry)));
+    }
+  }
+  for (const file of files) {
+    const full = path.join(repoRoot, file);
+    if (!fs.existsSync(full)) continue;
+    const html = fs.readFileSync(full, 'utf8');
+    for (const pattern of banned) assert.doesNotMatch(html, pattern, `${file} matches ${pattern}`);
+  }
 });
