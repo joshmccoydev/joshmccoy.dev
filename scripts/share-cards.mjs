@@ -27,14 +27,14 @@ const PAGE_EXTENSIONS = new Set(['.htm', '.html']);
 const TOKENS = `
 :root{
   color-scheme:dark;
-  --c-bg:#0a0a0b;
-  --c-surface:#111113;
-  --c-surface-2:#18181b;
-  --c-line:#27272a;
-  --c-line-strong:#52525b;
-  --c-text:#ededef;
-  --c-muted:#a1a1aa;
-  --c-subtle:#8b8b94;
+  --c-bg:#10120e;
+  --c-surface:#181b14;
+  --c-surface-2:#21261c;
+  --c-line:#31362b;
+  --c-line-strong:#6a7362;
+  --c-text:#f3f0e6;
+  --c-muted:#c4beae;
+  --c-subtle:#aea89a;
   --c-signal:#c6ff3d;
   --c-signal-ink:#0a0a0b;
   --c-signal-wash:rgba(198,255,61,.08);
@@ -65,6 +65,7 @@ const CARD_STYLE = `
 html,body{margin:0}body{width:1200px;height:630px;background:var(--c-bg);color:var(--c-text);font-family:var(--font-sans);position:relative;overflow:hidden}
 .grid{position:absolute;inset:0;background-image:linear-gradient(var(--c-line) 1px,transparent 1px),linear-gradient(90deg,var(--c-line) 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(70% 80% at 85% 15%,#000,transparent 75%);opacity:.5}
 .in{position:absolute;inset:72px 80px;display:flex;flex-direction:column}
+.marks{position:absolute;inset:48px;pointer-events:none;background:linear-gradient(#c6ff3d,#c6ff3d) 0 0/36px 2px no-repeat,linear-gradient(#c6ff3d,#c6ff3d) 0 0/2px 36px no-repeat,linear-gradient(#c6ff3d,#c6ff3d) 100% 100%/36px 2px no-repeat,linear-gradient(#c6ff3d,#c6ff3d) 100% 100%/2px 36px no-repeat}
 .brand{font:600 28px/1 var(--font-mono);display:flex;align-items:center}
 .brand i{display:inline-block;width:15px;height:30px;margin-left:4px;background:var(--c-signal)}
 .eyebrow{margin-top:auto;margin-bottom:20px;font:500 18px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--c-subtle)}
@@ -359,11 +360,11 @@ export function cardHtml(card, { fontDir = DEFAULT_FONT_DIR } = {}) {
 @font-face{font-family:"Geist Mono";src:url("${monoFont}") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
 ${TOKENS}
 ${CARD_STYLE}
-</style></head><body><div class="grid"></div><div class="in">
+</style></head><body><div class="grid"></div><div class="marks"></div><div class="in">
 <div class="brand">${site}<i></i></div>
 <div class="eyebrow">${eyebrow}</div>
 <h1 data-max="64" data-min="46">${title}</h1>
-<div class="foot"><span class="dot"></span>joshmccoy.dev \u00b7 South Texas</div>
+<div class="foot"><span class="dot"></span>Coastal Bend \u00b7 South Texas</div>
 </div><script>${FIT_SCRIPT}</script></body></html>`;
 }
 

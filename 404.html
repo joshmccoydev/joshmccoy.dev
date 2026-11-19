@@ -6,25 +6,39 @@
 <title>Not found · joshmccoy.dev</title>
 <meta name="robots" content="noindex">
 <meta name="description" content="This page doesn't exist on joshmccoy.dev.">
-<meta name="theme-color" content="#0a0a0b">
+<meta name="theme-color" content="#10120e" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f0e7" media="(prefers-color-scheme: light)">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/tokens.css">
 <style>
-body{margin:0;min-height:100vh;display:grid;place-items:center;padding:var(--gutter);background:var(--c-bg);color:var(--c-text);font:400 var(--fs-0)/var(--lh-body) var(--font-sans)}
-main{max-width:40ch}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;box-sizing:border-box;padding:var(--gutter);background:var(--c-bg);color:var(--c-text);font:400 var(--fs-0)/var(--lh-body) var(--font-sans)}
+main{width:100%;max-width:40ch;min-width:0;box-sizing:border-box;padding:var(--s-4);border:1px solid var(--c-line);border-radius:var(--r-lg);background:
+  linear-gradient(var(--c-mark),var(--c-mark)) 12px 12px / 16px 1px no-repeat,
+  linear-gradient(var(--c-mark),var(--c-mark)) 12px 12px / 1px 16px no-repeat,
+  linear-gradient(var(--c-mark),var(--c-mark)) calc(100% - 12px) calc(100% - 12px) / 16px 1px no-repeat,
+  linear-gradient(var(--c-mark),var(--c-mark)) calc(100% - 12px) calc(100% - 12px) / 1px 16px no-repeat,
+  var(--c-surface)}
 p{margin:0}
 .cmd{font:500 var(--fs--1)/1.75 var(--font-mono);color:var(--c-muted)}
-.cmd b{color:var(--c-signal);font-weight:500}
+.cmd b{color:var(--c-mark);font-weight:500}
 h1{margin:var(--s-2) 0 var(--s-3);font-size:var(--fs-3);line-height:var(--lh-snug);font-weight:600;letter-spacing:var(--tracking-tight)}
-a{display:inline-flex;align-items:center;min-height:var(--tap);padding:0 var(--s-3);border-radius:var(--r-md);background:var(--c-signal);color:var(--c-signal-ink);font-weight:600;text-decoration:none}
-a:focus-visible{outline:2px solid var(--c-focus);outline-offset:3px}
+a.home{display:inline-flex;align-items:center;min-height:var(--tap);padding:0 var(--s-3);border-radius:var(--r-md);background:var(--c-signal);color:var(--c-signal-ink);font-weight:600;text-decoration:none}
+a.home:focus-visible{outline:2px solid var(--c-focus);outline-offset:3px}
+.theme{margin-bottom:var(--s-3)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <main>
+  <fieldset class="theme">
+    <legend>Color theme</legend>
+    <label class="choice"><input type="radio" name="theme" value="system" checked><span>Auto</span></label>
+    <label class="choice"><input type="radio" name="theme" value="dark"><span>Dark</span></label>
+    <label class="choice"><input type="radio" name="theme" value="light"><span>Light</span></label>
+  </fieldset>
   <p class="cmd"><b>$</b> cd this-page<br>no such file or directory</p>
   <h1>Nothing built here yet.</h1>
-  <a href="/">Back to joshmccoy.dev</a>
+  <a class="home" href="/">Back to joshmccoy.dev</a>
 </main>
 </body>
 </html>

@@ -1,53 +1,65 @@
-/* joshmccoy.dev tokens. Sibling of j0sh.wtf (dark + lime), tuned to be calmer and more technical.
-   Lime is a signal: status dots, focus rings, the cursor and the single primary CTA. It is never used for body copy.
-   Type scale 1.25 (major third) from 16px. 8px spacing grid. Contrast ratios are WCAG 2.x, computed against each surface. */
+/* joshmccoy.dev tokens.
+   Night shop by default, warm paper in light mode. Lime is a fill: buttons, selection, the cursor on dark.
+   Small marks use --c-mark so they stay visible on paper. Lime is never body text.
+   Type scale 1.25 from 16px. 8px spacing grid. */
 @font-face{font-family:"Geist";src:url("fonts/geist-latin-var.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
 @font-face{font-family:"Geist Mono";src:url("fonts/geist-mono-latin-var.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
-/* Metric-matched fallbacks keep CLS near 0 while the webfonts swap in */
 @font-face{font-family:"Geist Fallback";src:local("Arial"),local("Helvetica"),local("Liberation Sans");size-adjust:104%;ascent-override:92%;descent-override:22%;line-gap-override:0%}
 @font-face{font-family:"Geist Mono Fallback";src:local("Courier New"),local("Liberation Mono");size-adjust:100%;ascent-override:90%;descent-override:24%}
 
 :root{
-  color-scheme:dark;
-  /* color: surfaces              text  / muted / subtle (ratio) */
-  --c-bg:#0a0a0b;        /* page        16.93 / 7.72 / 5.86 */
-  --c-surface:#111113;   /* cards       16.13 / 7.36 / 5.59 */
-  --c-surface-2:#18181b; /* insets, code 15.15 / 6.91 / 5.25 */
-  --c-line:#27272a;      /* hairlines, decorative only (1.33:1) */
-  --c-line-strong:#52525b; /* hover borders, diagram strokes (2.56:1 on bg) */
-  /* color: text */
-  --c-text:#ededef;      /* body + headings */
-  --c-muted:#a1a1aa;     /* secondary copy, >=6.9:1 everywhere */
-  --c-subtle:#8b8b94;    /* meta, labels, mono captions, >=5.25:1 everywhere */
-  /* color: signal */
-  --c-signal:#c6ff3d;    /* 16.75:1 on bg; shared DNA with j0sh.wtf */
-  --c-signal-ink:#0a0a0b;/* text on signal: 16.75:1 */
-  --c-signal-wash:rgba(198,255,61,.08);
-  --c-signal-line:rgba(198,255,61,.32);
-  --c-focus:var(--c-signal);
-  /* mockup-only: marks content Josh must confirm. Remove before launch. */
+  color-scheme:light dark;
+  --c-bg:light-dark(#f3f0e7,#10120e);
+  --c-surface:light-dark(#faf8f2,#181b14);
+  --c-surface-2:light-dark(#e7e2d6,#21261c);
+  --c-line:light-dark(#d9d3c4,#31362b);
+  --c-line-strong:light-dark(#6f6a60,#6a7362);
+  --c-text:light-dark(#1b1914,#f3f0e6);
+  --c-muted:light-dark(#4a453c,#c4beae);   /* >=8.3 paper, >=9.3 night */
+  --c-subtle:light-dark(#5c564c,#aea89a); /* >=5.6 paper, >=6.5 night */
+  --c-signal:#c6ff3d;
+  --c-signal-ink:#14160f;                  /* 15.4:1 on signal */
+  --c-mark:light-dark(#365314,#c6ff3d);    /* >=6.7 on paper, 15.9 on night */
+  --c-signal-wash:light-dark(rgba(54,83,20,.08),rgba(198,255,61,.10));
+  --c-signal-line:light-dark(rgba(54,83,20,.45),rgba(198,255,61,.40));
+  --c-focus:light-dark(#1b1914,#c6ff3d);
+  --c-header:light-dark(rgba(243,240,231,.9),rgba(16,18,14,.86));
+  --c-shadow:light-dark(0 18px 40px -24px rgba(40,32,16,.28),0 24px 60px -28px rgba(0,0,0,.72));
 
-  /* type */
   --font-sans:"Geist","Geist Fallback",system-ui,-apple-system,"Segoe UI",sans-serif;
   --font-mono:"Geist Mono","Geist Mono Fallback",ui-monospace,SFMono-Regular,Menlo,monospace;
-  --fs--1:0.8rem;    /* 12.8 mono labels */
-  --fs-0:1rem;       /* 16 body */
-  --fs-1:1.25rem;    /* 20 lead, h3 */
-  --fs-2:1.563rem;   /* 25 */
-  --fs-3:1.953rem;   /* 31.25 h2 */
-  --fs-4:2.441rem;   /* 39 h1 mobile */
-  --fs-5:3.052rem;   /* 48.8 h1 tablet */
-  --fs-6:3.815rem;   /* 61 h1 desktop */
-  --lh-tight:1.1; --lh-snug:1.3; --lh-body:1.6;
-  --tracking-tight:-0.03em; --tracking-label:0.08em;
+  --fs--1:0.8rem;
+  --fs-0:1rem;
+  --fs-1:1.25rem;
+  --fs-2:1.563rem;
+  --fs-3:1.953rem;
+  --fs-4:2.441rem;
+  --fs-5:3.052rem;
+  --fs-6:3.815rem;
+  --lh-tight:1.05;
+  --lh-snug:1.25;
+  --lh-body:1.6;
+  --tracking-tight:-0.035em;
+  --tracking-label:0.08em;
 
-  /* space: 8px grid */
   --s-0:4px; --s-1:8px; --s-2:16px; --s-3:24px; --s-4:32px; --s-5:40px; --s-6:48px; --s-8:64px; --s-10:80px; --s-12:96px; --s-16:128px;
-
-  /* shape + layout */
-  --r-sm:6px; --r-md:12px; --r-lg:16px;
+  --r-sm:6px; --r-md:12px; --r-lg:18px;
   --tap:44px; --max:1120px; --measure:62ch; --gutter:var(--s-2);
-  --dur:160ms; --ease:cubic-bezier(.2,.7,.2,1);
+  --dur:180ms; --ease:cubic-bezier(.2,.7,.2,1);
 }
+:root:has(input[name="theme"][value="dark"]:checked){color-scheme:dark}
+:root:has(input[name="theme"][value="light"]:checked){color-scheme:light}
+
 @media (min-width:480px){:root{--gutter:var(--s-3)}}
 @media (min-width:768px){:root{--gutter:var(--s-5)}}
+
+html{overflow-x:clip}
+img,svg,video{max-width:100%;height:auto}
+
+/* Shared color control. Pages that include the fieldset pick it up. */
+.theme{display:inline-flex;align-items:center;gap:2px;margin:0;padding:2px;border:1px solid var(--c-line-strong);border-radius:999px;min-width:0}
+.theme legend{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.choice{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:var(--tap);padding:0 10px;border-radius:999px;color:var(--c-muted);font:500 var(--fs--1)/1 var(--font-mono);cursor:pointer}
+.choice input{position:absolute;width:1px;height:1px;margin:0;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.choice:has(input:checked){background:var(--c-signal);color:var(--c-signal-ink)}
+.choice:has(input:focus-visible){outline:2px solid var(--c-focus);outline-offset:2px}

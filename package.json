@@ -1,0 +1,7 @@
+{
+  "name": "joshmccoy.dev",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  }
+}
