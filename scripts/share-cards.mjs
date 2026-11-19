@@ -26,19 +26,19 @@ const PAGE_EXTENSIONS = new Set(['.htm', '.html']);
 
 const TOKENS = `
 :root{
-  color-scheme:dark;
-  --c-bg:#0a0a0b;
-  --c-surface:#111113;
-  --c-surface-2:#18181b;
-  --c-line:#27272a;
-  --c-line-strong:#52525b;
-  --c-text:#ededef;
-  --c-muted:#a1a1aa;
-  --c-subtle:#8b8b94;
-  --c-signal:#c6ff3d;
-  --c-signal-ink:#0a0a0b;
-  --c-signal-wash:rgba(198,255,61,.08);
-  --c-signal-line:rgba(198,255,61,.32);
+  color-scheme:light;
+  --c-bg:#f3efe6;
+  --c-surface:#fffdf8;
+  --c-surface-2:#e6e0d4;
+  --c-line:#d9d2c3;
+  --c-line-strong:#5e564c;
+  --c-text:#1b1914;
+  --c-muted:#3a362f;
+  --c-subtle:#3a362f;
+  --c-signal:#12382f;
+  --c-signal-ink:#f3efe6;
+  --c-signal-wash:rgba(18,56,47,.08);
+  --c-signal-line:rgba(18,56,47,.4);
   --c-focus:var(--c-signal);
   --font-sans:"Geist","Geist Fallback",system-ui,-apple-system,"Segoe UI",sans-serif;
   --font-mono:"Geist Mono","Geist Mono Fallback",ui-monospace,SFMono-Regular,Menlo,monospace;

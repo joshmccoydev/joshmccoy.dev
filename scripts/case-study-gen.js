@@ -73,7 +73,7 @@ p{margin:0;text-wrap:pretty}
 .wrap{width:100%;max-width:var(--max);margin:0 auto;padding-inline:var(--gutter)}
 .skip{position:absolute;left:var(--s-2);top:-100px;z-index:20;min-height:var(--tap);display:inline-flex;align-items:center;padding:0 var(--s-2);background:var(--c-signal);color:var(--c-signal-ink);border-radius:var(--r-sm);font-weight:600;text-decoration:none}
 .skip:focus{top:var(--s-2)}
-.top{position:sticky;top:0;z-index:10;background:rgba(10,10,11,.88);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--c-line)}
+.top{position:sticky;top:0;z-index:10;background:var(--c-bg);border-bottom:1px solid var(--c-line)}
 .top .wrap{display:flex;align-items:center;min-height:64px}
 .brand{display:inline-flex;align-items:center;gap:var(--s-1);min-height:var(--tap);font:600 var(--fs-0)/1 var(--font-mono);letter-spacing:-.01em;text-decoration:none}
 .brand::before{content:"\u2190";color:var(--c-signal);font-weight:400}
@@ -446,7 +446,7 @@ function renderPage(parsed, slug, site) {
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${escapeHtml(metadata.pageTitle)}</title>
 <meta name="description" content="${escapeHtml(metadata.description)}">
-<meta name="theme-color" content="#0a0a0b">
+<meta name="theme-color" content="#f3efe6">
 <link rel="canonical" href="${metadata.canonical}">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="${escapeHtml(metadata.siteName)}">
@@ -463,7 +463,8 @@ function renderPage(parsed, slug, site) {
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preload" href="/fonts/geist-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/geist-latin-var.3c002e62.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/geist-mono-latin-var.4fc2821c.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/tokens.css">
 <style>${STYLE}</style>
 </head>
