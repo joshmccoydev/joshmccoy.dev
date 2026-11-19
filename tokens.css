@@ -3,8 +3,8 @@
    the color of a grease pencil on a set of prints.
    Type scale 1.25 from 16px. 8px spacing grid.
    Dark is the default. Light follows the system, or the theme control. */
-@font-face{font-family:"Geist";src:url("fonts/geist-latin-var.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
-@font-face{font-family:"Geist Mono";src:url("fonts/geist-mono-latin-var.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Geist";src:url("fonts/geist-latin-var.3c002e62.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url("fonts/geist-mono-latin-var.4fc2821c.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
 @font-face{font-family:"Geist Fallback";src:local("Arial"),local("Helvetica"),local("Liberation Sans");size-adjust:104%;ascent-override:92%;descent-override:22%;line-gap-override:0%}
 @font-face{font-family:"Geist Mono Fallback";src:local("Courier New"),local("Liberation Mono");size-adjust:100%;ascent-override:90%;descent-override:24%}
 
