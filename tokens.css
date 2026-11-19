@@ -18,7 +18,7 @@
   /* color: text */
   --c-text:#ededef;      /* body + headings */
   --c-muted:#a1a1aa;     /* secondary copy, >=6.9:1 everywhere */
-  --c-subtle:#8b8b94;    /* meta, labels, mono captions, >=5.25:1 everywhere */
+  --c-subtle:#a1a1aa;    /* meta, labels, mono captions, >=7:1 on page background */
   /* color: signal */
   --c-signal:#c6ff3d;    /* 16.75:1 on bg; shared DNA with j0sh.wtf */
   --c-signal-ink:#0a0a0b;/* text on signal: 16.75:1 */
