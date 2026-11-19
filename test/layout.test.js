@@ -82,10 +82,24 @@ test('no horizontal scroll from 320px through desktop, in both themes', { timeou
     'about:blank',
   ], { stdio: 'ignore' });
 
-  t.after(() => {
-    proc.kill();
+  t.after(async () => {
     server.close();
-    fs.rmSync(profile, { recursive: true, force: true });
+    proc.kill();
+    await new Promise((resolve) => {
+      if (proc.exitCode !== null) {
+        resolve();
+        return;
+      }
+      const timer = setTimeout(() => {
+        proc.kill('SIGKILL');
+        resolve();
+      }, 1000);
+      proc.once('exit', () => {
+        clearTimeout(timer);
+        resolve();
+      });
+    });
+    fs.rmSync(profile, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
   });
 
   let version;
