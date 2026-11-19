@@ -81,10 +81,10 @@ ul,ol{margin:0;padding:0;list-style:none}
 .term-bar{display:flex;align-items:center;gap:var(--s-1);padding:var(--s-1) var(--s-2);border-bottom:1px solid var(--c-line);min-height:40px}
 .term-bar i{width:10px;height:10px;border-radius:50%;background:var(--c-line-strong)}
 .term-bar span{margin-left:auto;font:500 var(--fs--1)/1 var(--font-mono);color:var(--c-subtle)}
-.term-body{padding:var(--s-2) var(--s-2) var(--s-3);font:400 var(--fs--1)/1.75 var(--font-mono);color:var(--c-muted);overflow-x:auto}
+.term-body{padding:var(--s-2) var(--s-2) var(--s-3);font:400 var(--fs--1)/1.75 var(--font-mono);color:var(--c-muted)}
 .term-body .cmd{color:var(--c-text)}
 .term-body .cmd b{color:var(--c-signal);font-weight:500}
-.term-body li{display:grid;grid-template-columns:8px 11ch 1fr;gap:var(--s-1);align-items:center;white-space:nowrap;opacity:0;animation:line .3s var(--ease) forwards}
+.term-body li{display:grid;grid-template-columns:8px 11ch minmax(0,1fr);gap:var(--s-1);align-items:start;white-space:normal;opacity:0;animation:line .3s var(--ease) forwards}
 .term-body li .d{width:6px;height:6px;border-radius:50%;background:var(--c-signal)}
 .term-body li .n{color:var(--c-text)}
 .term-body .rule{margin-top:var(--s-1);padding-top:var(--s-1);border-top:1px dashed var(--c-line);white-space:normal}
@@ -224,17 +224,18 @@ footer a{display:inline-flex;align-items:center;min-height:var(--tap);color:var(
         <div class="term-body">
           <p class="cmd" aria-hidden="true"><b>$</b> team --lanes</p>
           <ul aria-label="The bot team's lanes">
-            <li><span class="d" aria-hidden="true"></span><span class="n">alfred</span><span>chief of staff</span></li>
-            <li><span class="d" aria-hidden="true"></span><span class="n">don-draper</span><span>sales drafts</span></li>
-            <li><span class="d" aria-hidden="true"></span><span class="n">hemingway</span><span>edits every draft</span></li>
-            <li><span class="d" aria-hidden="true"></span><span class="n">banksy</span><span>brand and design</span></li>
-            <li><span class="d" aria-hidden="true"></span><span class="n">neil</span><span>research, fact-checks</span></li>
-            <li><span class="d" aria-hidden="true"></span><span class="n">elon</span><span>code, tests, deploys</span></li>
-            <li><span class="d" aria-hidden="true"></span><span class="n">woz</span><span>builds the tickets</span></li>
-            <li><span class="d" aria-hidden="true"></span><span class="n">post-malone</span><span>inbox triage</span></li>
-            <li><span class="d" aria-hidden="true"></span><span class="n">dolly</span><span>calendar</span></li>
-            <li><span class="d" aria-hidden="true"></span><span class="n">dewey</span><span>notes, saved links</span></li>
-            <li><span class="d" aria-hidden="true"></span><span class="n">dr-eggbot</span><span>designs new bots</span></li>
+            <li><span class="d" aria-hidden="true"></span><span class="n">operations</span><span>runs the day, routes the work</span></li>
+            <li><span class="d" aria-hidden="true"></span><span class="n">engineering</span><span>builds the tickets</span></li>
+            <li><span class="d" aria-hidden="true"></span><span class="n">design</span><span>brand and visuals</span></li>
+            <li><span class="d" aria-hidden="true"></span><span class="n">writing</span><span>edits every draft</span></li>
+            <li><span class="d" aria-hidden="true"></span><span class="n">sales</span><span>drafts outreach</span></li>
+            <li><span class="d" aria-hidden="true"></span><span class="n">finance</span><span>watches the money</span></li>
+            <li><span class="d" aria-hidden="true"></span><span class="n">inbox</span><span>triages email</span></li>
+            <li><span class="d" aria-hidden="true"></span><span class="n">research</span><span>fact-checks</span></li>
+            <li><span class="d" aria-hidden="true"></span><span class="n">health</span><span>training and habits</span></li>
+            <li><span class="d" aria-hidden="true"></span><span class="n">library</span><span>keeps the notes</span></li>
+            <li><span class="d" aria-hidden="true"></span><span class="n">calendar</span><span>runs the routines</span></li>
+            <li><span class="d" aria-hidden="true"></span><span class="n">night shop</span><span>light crew I–III, cheap jobs overnight</span></li>
           </ul>
           <p class="rule"><b>rule:</b> nothing sends, posts or spends until Josh says yes.</p>
         </div>
