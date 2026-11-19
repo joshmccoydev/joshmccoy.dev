@@ -243,6 +243,8 @@ test('planSync selects public files from the real repository', () => {
     );
   }
 
+  assert.ok(!plannedFiles.includes('og.png'));
+
   for (const relativePath of plannedFiles) {
     assert.ok(
       !relativePath.startsWith('scripts/'),
@@ -262,6 +264,12 @@ test('planSync selects public files from the real repository', () => {
     );
     assert.notEqual(relativePath, 'img/og/manifest.json');
   }
+});
+
+test('public headers set Cross-Origin-Opener-Policy to same-origin', () => {
+  const headers = fs.readFileSync(path.join(REPO_ROOT, '_headers'), 'utf8');
+  const publicBlock = headers.match(/^\/\*\n((?:[ \t].*(?:\n|$))*)/m)?.[1];
+  assert.match(publicBlock ?? '', /Cross-Origin-Opener-Policy: same-origin/);
 });
 
 test('syncPublic defaults to a dry run and applies without deleting extras', (t) => {

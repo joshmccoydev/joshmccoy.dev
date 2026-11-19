@@ -118,6 +118,50 @@ function writeFixtureAssets(assetsPath, slug, { omit = null } = {}) {
   }
 }
 
+function writeFixtureSitemap(root) {
+  fs.writeFileSync(
+    path.join(root, 'sitemap.xml'),
+    '<?xml version="1.0" encoding="UTF-8"?>\n' +
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+      '  <url><loc>https://joshmccoy.dev/</loc></url>\n' +
+      '</urlset>\n',
+    'utf8',
+  );
+}
+
+test('generated page styles CTA links and adds its canonical URL to sitemap', (t) => {
+  const root = makeTempRoot('sitemap');
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const copyPath = path.join(root, 'copy.md');
+  const assetsPath = path.join(root, 'assets');
+  const slug = 'fixture';
+
+  writeFixtureCopy(copyPath);
+  writeFixtureAssets(assetsPath, slug);
+  writeFixtureSitemap(root);
+
+  const result = runGenerator(
+    [
+      ...generatorArgs({ copyPath, assetsPath, slug, root }),
+      '--sitemap',
+      path.join(root, 'sitemap.xml'),
+    ],
+  );
+
+  assert.equal(result.status, 0, result.stderr);
+  const html = fs.readFileSync(
+    path.join(root, 'case-studies', slug, 'index.html'),
+    'utf8',
+  );
+  assert.match(html, /\.btn-primary\{/);
+  const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
+  assert.match(
+    sitemap,
+    /<url><loc>https:\/\/joshmccoy\.dev\/case-studies\/fixture\/<\/loc><\/url>/,
+  );
+  assert.doesNotMatch(sitemap, /<lastmod>/);
+});
+
 test('pending number marker stops generation without writing output', (t) => {
   const root = makeTempRoot('pending-marker');
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));

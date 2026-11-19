@@ -73,6 +73,12 @@ p{margin:0;text-wrap:pretty}
 .wrap{width:100%;max-width:var(--max);margin:0 auto;padding-inline:var(--gutter)}
 .skip{position:absolute;left:var(--s-2);top:-100px;z-index:20;min-height:var(--tap);display:inline-flex;align-items:center;padding:0 var(--s-2);background:var(--c-signal);color:var(--c-signal-ink);border-radius:var(--r-sm);font-weight:600;text-decoration:none}
 .skip:focus{top:var(--s-2)}
+.btn{display:inline-flex;align-items:center;gap:var(--s-1);min-height:var(--tap);padding:0 var(--s-3);border-radius:var(--r-md);font-weight:600;text-decoration:none;transition:background-color var(--dur) var(--ease),border-color var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.btn-primary{background:var(--c-signal);color:var(--c-signal-ink)}
+.btn-primary:hover{transform:translateY(-1px)}
+.btn .arr{display:inline-block;transition:transform var(--dur) var(--ease)}
+.btn:hover .arr{transform:translateX(3px)}
+.cta-row{display:flex;flex-wrap:wrap;gap:var(--s-2)}
 .top{position:sticky;top:0;z-index:10;background:rgba(10,10,11,.88);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--c-line)}
 .top .wrap{display:flex;align-items:center;min-height:64px}
 .brand{display:inline-flex;align-items:center;gap:var(--s-1);min-height:var(--tap);font:600 var(--fs-0)/1 var(--font-mono);letter-spacing:-.01em;text-decoration:none}
@@ -94,7 +100,6 @@ p{margin:0;text-wrap:pretty}
 .how li{position:relative;padding-left:var(--s-6);counter-increment:steps}
 .how li::before{content:counter(steps);position:absolute;left:0;top:.05em;width:var(--s-4);height:var(--s-4);display:grid;place-items:center;border:1px solid var(--c-signal-line);border-radius:50%;background:var(--c-signal-wash);color:var(--c-signal);font:500 var(--fs--1)/1 var(--font-mono)}
 .how li strong{color:var(--c-text);font-weight:600}
-.needs-josh{display:inline;padding:.05em .25em .1em;border-left:3px solid var(--c-signal);background:var(--c-signal-wash);color:var(--c-text);font-family:var(--font-mono);font-size:.82em;line-height:1.5;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .figure{margin:var(--s-4) 0 0;border:1px solid var(--c-line);border-radius:var(--r-md);overflow:hidden;background:var(--c-surface)}
 .figure img{width:100%}
 .how .figure{margin-left:calc(var(--s-6) * -1)}
@@ -121,7 +126,8 @@ p{margin:0;text-wrap:pretty}
 function usage() {
   return (
     'Usage: scripts/case-study-gen.js --copy <copy.md> ' +
-    '--assets <dir> --slug <slug> --root <dir> [--site <url>]'
+    '--assets <dir> --slug <slug> --root <dir> [--site <url>] ' +
+    '[--sitemap <path>]'
   );
 }
 
@@ -137,6 +143,7 @@ function parseArgs(argv) {
     '--slug',
     '--root',
     '--site',
+    '--sitemap',
   ]);
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -547,6 +554,31 @@ function writeOutput(root, slug, html, images) {
   fs.writeFileSync(path.join(pageDirectory, 'index.html'), html, 'utf8');
 }
 
+function updateSitemap(root, slug, site, sitemapPath) {
+  const redirectsPath = path.join(root, '_redirects');
+  const redirectFrom = `/case-studies/${slug}`;
+  if (fs.existsSync(redirectsPath)) {
+    const redirects = fs.readFileSync(redirectsPath, 'utf8');
+    const redirected = redirects.split(/\r?\n/).some((line) => {
+      const source = line.trim().split(/\s+/)[0];
+      return source === redirectFrom || source === `${redirectFrom}/`;
+    });
+    if (redirected) return;
+  }
+
+  if (!fs.existsSync(sitemapPath)) return;
+  const canonical = `${site}/case-studies/${slug}/`;
+  const sitemap = fs.readFileSync(sitemapPath, 'utf8');
+  if (sitemap.includes(`<loc>${canonical}</loc>`)) return;
+  const closeTag = '</urlset>';
+  const closeIndex = sitemap.lastIndexOf(closeTag);
+  if (closeIndex === -1) fail(`Invalid sitemap: missing ${closeTag}`);
+  const updated =
+    `${sitemap.slice(0, closeIndex)}  <url><loc>${canonical}</loc></url>\n` +
+    sitemap.slice(closeIndex);
+  fs.writeFileSync(sitemapPath, updated, 'utf8');
+}
+
 function main(argv = process.argv.slice(2)) {
   try {
     const args = parseArgs(argv);
@@ -558,6 +590,9 @@ function main(argv = process.argv.slice(2)) {
     const copyPath = path.resolve(args.copy);
     const assetsPath = path.resolve(args.assets);
     const root = path.resolve(args.root);
+    const sitemapPath = args.sitemap
+      ? path.resolve(args.sitemap)
+      : path.join(root, 'sitemap.xml');
 
     if (!fs.existsSync(copyPath) || !fs.statSync(copyPath).isFile()) {
       fail(`Copy file does not exist: ${copyPath}`);
@@ -568,6 +603,7 @@ function main(argv = process.argv.slice(2)) {
     const images = loadImages(assetsPath, args.slug);
     const html = renderPage(parsed, args.slug, args.site);
     writeOutput(root, args.slug, html, images);
+    updateSitemap(root, args.slug, args.site, sitemapPath);
 
     process.stdout.write(
       `Generated case-studies/${args.slug}/index.html and ` +
