@@ -183,7 +183,7 @@ test('social metadata and canonical URL are correct', { skip: !pageExists }, () 
   );
   assert.equal(
     getAttribute(findLinkByRel(html, 'canonical') ?? '', 'href'),
-    'https://joshmccoy.dev/case-studies/bot-team/',
+    'https://j0sh.wtf/case-studies/bot-team/',
   );
 });
 
